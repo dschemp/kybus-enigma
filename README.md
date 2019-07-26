@@ -1,7 +1,7 @@
 # Kybus Enigma
 
 ### Available Cryptographic Features:
-- Assymetric
+- Asymmetric
   - RSA
 - Hashing
   - SHA2 (-224, -256, 384, -512)
