@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace KybusEnigma.Lib.Hashing.Sha2
 {
-    public class Sha512 : Sha2Base
+    public sealed class Sha512 : Sha2Base
     {
         public override byte[] Hash(byte[] input)
         {

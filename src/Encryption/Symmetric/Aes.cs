@@ -1,26 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KybusEnigma.Lib.Symmetric
+namespace KybusEnigma.Lib.Encryption.Symmetric
 {
-    public class Aes
+    public sealed class Aes : EncryptionBase
     {
         #region Generate Instance with Key
 
         public enum KeyLength
         {
             Key128 = 128, Key192 = 192, Key256 = 256
-        }
-
-        public static Aes CreateWithRandomKey(KeyLength l)
-        {
-            var bitLength = (int) l;
-
-            // TODO: cryptographically secure PRNG
-            var rnd = System.Security.Cryptography.RandomNumberGenerator.Create();
-            var arr = new byte[bitLength / 8];
-            rnd.GetBytes(arr);
-            return new Aes(arr);
         }
 
         #endregion
@@ -31,12 +20,12 @@ namespace KybusEnigma.Lib.Symmetric
         public byte[] Key
         {
             get => _key;
-            set => _setKey(value);
+            set => SetKey(value);
         }
 
         public KeyLength Mode { get; private set; }
 
-        private void _setKey(byte[] key)
+        private void SetKey(byte[] key)
         {
             // Only valid key lengths 128, 192 and 256 bits (16, 24 and 24 bytes respectively)
             if (key != null && key.Length != 16 && key.Length != 24 && key.Length != 32)
@@ -134,17 +123,30 @@ namespace KybusEnigma.Lib.Symmetric
 
         #endregion
 
-        public Aes(byte[] key, byte[] cbcInitVector = null)
+        private Aes(byte[] key, byte[] cbcInitVector = null)
         {
             this.Key = key;
             this.CbcInitVector = cbcInitVector;
         }
 
+        public static EncryptionBase Create(byte[] key) => new Aes(key);
+
+        public static EncryptionBase CreateWithRandomKey(int lengthInBits)
+        {
+            if (lengthInBits != 128 || lengthInBits != 192 || lengthInBits != 256)
+                throw new ArgumentOutOfRangeException("Key length must be 128, 192 or 256 bits!");
+
+            var arr = new byte[lengthInBits / 8];
+            using (var rnd = System.Security.Cryptography.RandomNumberGenerator.Create())
+                rnd.GetBytes(arr);
+            return new Aes(arr);
+        }
+
         #region Wrapper Methods
 
-        public byte[] Encrypt(byte[] data)
+        public override byte[] Encrypt(byte[] plainText)
         {
-            var blocks = (int)Math.Ceiling(data.Length / 16.0);
+            var blocks = (int)Math.Ceiling(plainText.Length / 16.0);
             var output = new byte[blocks * 16];
             byte[] lastBlock = null;
 
@@ -158,7 +160,7 @@ namespace KybusEnigma.Lib.Symmetric
 
                 for (var l = start; l < end; l++)
                 {
-                    block[l - start] = (data.Length > l) ? data[l] : (byte)0x0;
+                    block[l - start] = (plainText.Length > l) ? plainText[l] : (byte)0x0;
                 }
 
                 var cipherText = EncryptBlock(block, cbcVector);
@@ -172,7 +174,7 @@ namespace KybusEnigma.Lib.Symmetric
             return output;
         }
 
-        public byte[] Decrypt(byte[] encryptedData)
+        public override byte[] Decrypt(byte[] encryptedData)
         {
             var blocks = (int)Math.Ceiling(encryptedData.Length / 16.0);
             var output = new byte[blocks * 16];

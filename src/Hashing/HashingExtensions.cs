@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace KybusEnigma.Lib.Hashing
 {
-    public static class ShaExtensions
+    public static class HashingExtensions
     {
         #region ULong Operations
 

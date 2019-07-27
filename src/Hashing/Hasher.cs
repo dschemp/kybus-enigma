@@ -1,4 +1,7 @@
-﻿namespace KybusEnigma.Lib.Hashing
+﻿using System;
+using System.Runtime.CompilerServices;
+
+namespace KybusEnigma.Lib.Hashing
 {
     public abstract class Hasher
     {

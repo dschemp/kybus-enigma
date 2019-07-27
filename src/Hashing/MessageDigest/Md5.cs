@@ -2,7 +2,7 @@
 
 namespace KybusEnigma.Lib.Hashing.MessageDigest
 {
-    public class Md5 : MessageDigestBase
+    public sealed class Md5 : MessageDigestBase
     {
         public override byte[] Hash(byte[] arr)
         {
