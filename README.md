@@ -1,4 +1,4 @@
-# Kybus Enigma
+![Kybus Enigma](docs/logo.svg)
 
 ### Available Cryptographic Features:
 - Encryption
