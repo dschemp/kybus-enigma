@@ -1,4 +1,4 @@
-# Kybus Enigma
+![Kybus Enigma](docs/logo.svg)
 
 ### Available Cryptographic Features:
 - Asymmetric
@@ -7,4 +7,4 @@
   - SHA2 (-224, -256, 384, -512)
   - MD5 / MD6 (WIP)
 - Symmetric
-  - AES (+ CBC Mode)
+  - AES (+ CBC Mode)def
