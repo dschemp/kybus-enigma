@@ -1,5 +1,4 @@
-﻿using System.Dynamic;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace KybusEnigma.Lib.Encryption.Asymmetric
 {

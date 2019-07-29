@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace KybusEnigma.Lib.Encryption
+﻿namespace KybusEnigma.Lib.Encryption
 {
     public sealed class AsymmetricKeyPair
     {

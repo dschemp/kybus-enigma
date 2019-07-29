@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+using System.IO;
 
 namespace KybusEnigma.Lib.Hashing.MessageDigest
 {
@@ -79,9 +78,9 @@ namespace KybusEnigma.Lib.Hashing.MessageDigest
             return hash.UIntsArr2BytesArrLittleEndian();
         }
 
-        uint ComputeRound(uint a, uint b, uint c, uint d, uint x, int s, uint i, Func<uint, uint, uint, uint> func)
+        public override byte[] Hash(Stream stream)
         {
-            return b + ((a + func(b, c, d) + x + K[i - 1]).RotL(s));
+            throw new NotImplementedException();
         }
 
         public override string GetName() => "MD5";

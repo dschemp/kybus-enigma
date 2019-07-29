@@ -1,7 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
-namespace KybusEnigma.Lib.Hashing.Sha2
+namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
 {
     public sealed class Sha256 : Sha2Base
     {
@@ -26,18 +27,18 @@ namespace KybusEnigma.Lib.Hashing.Sha2
 
             var n = arr.Length / 16;
 
-            // Process each block
+            var m = new uint[16]; // M_0 -> M_15, Current Block
             var w = new uint[64]; // W_0 -> W_63, Message Schedule
+
+            // Process each block
             for (var i = 0; i < n; i++)
             {
-                var m = new uint[16]; // M_0 -> M_15, Current Block
 
                 // message block
                 Array.Copy(arr, i * m.Length, m, 0, m.Length);
 
                 // 1. Prepare the message schedule W:
-                foreach (var t in Enumerable.Range(0, 16))
-                    w[t] = m[t];
+                Array.Copy(m, 0, w, 0, m.Length);
                 foreach (var t in Enumerable.Range(16, 48))
                     w[t] = SmallSigma1(w[t - 2]) + w[t - 7] + SmallSigma0(w[t - 15]) + w[t - 16];
 
@@ -80,6 +81,11 @@ namespace KybusEnigma.Lib.Hashing.Sha2
             return hash.UIntsArr2BytesArr();
         }
 
-        public override string GetName() => "Sha-256";
+        public override byte[] Hash(Stream stream)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string GetName() => "SHA2-256";
     }
 }

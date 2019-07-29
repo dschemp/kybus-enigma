@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using KybusEnigma.Lib.Hashing.MessageDigest;
+﻿using KybusEnigma.Lib.Hashing.MessageDigest;
 using KybusEnigma.xUnit.Helper;
 using Xunit;
 
-namespace KybusEnigma.xUnit
+namespace KybusEnigma.xUnit.Hashing.MessageDigest
 {
     public class UnitTestMd5
     {

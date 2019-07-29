@@ -2,7 +2,7 @@
 using KybusEnigma.xUnit.Helper;
 using Xunit;
 
-namespace KybusEnigma.xUnit
+namespace KybusEnigma.xUnit.Encryption
 {
     public class UnitTestAes
     {

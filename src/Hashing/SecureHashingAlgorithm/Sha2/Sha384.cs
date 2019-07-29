@@ -1,44 +1,44 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
-namespace KybusEnigma.Lib.Hashing.Sha2
+namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
 {
-    public sealed class Sha224 : Sha2Base
+    public sealed class Sha384 : Sha2Base
     {
         public override byte[] Hash(byte[] data)
         {
-            var paddedInput = Pad256(data);
-            // Convert input byte array to uint array for processing
-            var arr = paddedInput.BytesArr2UIntArr();
+            var paddedInput = Pad512(data);
+            // Convert input bytes to ulong array
+            var arr = paddedInput.BytesArr2ULongArr();
 
-            // Initial Values
-            uint[] hash =
+            // Initial values
+            ulong[] hash =
             {
-                0xc1059ed8, // H_0
-                0x367cd507, // H_1
-                0x3070dd17, // H_2
-                0xf70e5939, // H_3
-                0xffc00b31, // H_4
-                0x68581511, // H_5
-                0x64f98fa7, // H_6
-                0xbefa4fa4  // H_7
+                0xcbbb9d5dc1059ed8, // H_0
+                0x629a292a367cd507, // H_1
+                0x9159015a3070dd17, // H_2
+                0x152fecd8f70e5939, // H_3
+                0x67332667ffc00b31, // H_4
+                0x8eb44a8768581511, // H_5
+                0xdb0c2e0d64f98fa7, // H_6
+                0x47b5481dbefa4fa4  // H_7
             };
 
             var n = arr.Length / 16;
 
+            var m = new ulong[16]; // M_0 -> M_15
+            var w = new ulong[80]; // W_0 -> W_79, Message Schedule
+
             // Process each block
-            var w = new uint[64]; // W_0 -> W_63, Message Schedule
             for (var i = 0; i < n; i++)
             {
-                var m = new uint[16]; // M_0 -> M_15, Current Block
-
                 // message block
                 Array.Copy(arr, i * m.Length, m, 0, m.Length);
 
                 // 1. Prepare the message schedule W:
-                foreach (var t in Enumerable.Range(0, 16))
-                    w[t] = m[t];
-                foreach (var t in Enumerable.Range(16, 48))
+                Array.Copy(m, 0, w, 0, m.Length);
+                foreach (var t in Enumerable.Range(start: 16, count: 64))
                     w[t] = SmallSigma1(w[t - 2]) + w[t - 7] + SmallSigma0(w[t - 15]) + w[t - 16];
 
                 // 2. Initialize the working variables:
@@ -52,9 +52,9 @@ namespace KybusEnigma.Lib.Hashing.Sha2
                 var h = hash[7];
 
                 // 3. Perform the main hash computation:
-                foreach (var t in Enumerable.Range(0, 64))
+                foreach (var t in Enumerable.Range(0, 80))
                 {
-                    var t1 = h + BigSigma1(e) + Ch(e, f, g) + K256[t] + w[t];
+                    var t1 = h + BigSigma1(e) + Ch(e, f, g) + K512[t] + w[t];
                     var t2 = BigSigma0(a) + Maj(a, b, c);
                     h = g;
                     g = f;
@@ -77,11 +77,16 @@ namespace KybusEnigma.Lib.Hashing.Sha2
                 hash[7] += h;
             }
 
-            var output = new[] {hash[0], hash[1], hash[2], hash[3], hash[4], hash[5], hash[6]};
+            var output = new[] { hash[0], hash[1], hash[2], hash[3], hash[4], hash[5] };
 
-            return output.UIntsArr2BytesArr();
+            return output.ULongsArr2BytesArr();
         }
 
-        public override string GetName() => "Sha-224";
+        public override byte[] Hash(Stream stream)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string GetName() => "SHA2-384";
     }
 }
