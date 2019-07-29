@@ -123,18 +123,27 @@ namespace KybusEnigma.Lib.Encryption.Symmetric
 
         #endregion
 
-        private Aes(byte[] key, byte[] cbcInitVector = null)
+        public Aes(byte[] key, byte[] cbcInitVector = null)
         {
             this.Key = key;
             this.CbcInitVector = cbcInitVector;
         }
 
-        public static EncryptionBase Create(byte[] key) => new Aes(key);
+        public static Aes Create(byte[] key) => new Aes(key);
 
-        public static EncryptionBase CreateWithRandomKey(int lengthInBits)
+        public static Aes Create(byte[] key, byte[] cbcInitVector) => new Aes(key, cbcInitVector);
+
+        public static Aes CreateWithRandomKey(int lengthInBits)
         {
-            if (lengthInBits != 128 || lengthInBits != 192 || lengthInBits != 256)
-                throw new ArgumentOutOfRangeException("Key length must be 128, 192 or 256 bits!");
+            switch (lengthInBits)
+            {
+                case 128:
+                case 192:
+                case 256:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("Key length must be 128, 192 or 256 bits!");
+            }
 
             var arr = new byte[lengthInBits / 8];
             using (var rnd = System.Security.Cryptography.RandomNumberGenerator.Create())

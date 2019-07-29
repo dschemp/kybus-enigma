@@ -61,6 +61,15 @@ namespace KybusEnigma.Lib.Hashing
                 .ToArray();
         }
 
+        public static uint[] BytesArr2UIntArrLittleEndian(this byte[] arr)
+        {
+            var length = (int)Math.Ceiling(arr.Length / 4.0);
+            return Enumerable
+                .Range(0, length)
+                .Select(i => BitConverter.ToUInt32(arr, i * 4))
+                .ToArray();
+        }
+
         public static ulong[] BytesArr2ULongArr(this byte[] arr)
         {
             var length = (int)Math.Ceiling(arr.Length / 8.0);
@@ -102,23 +111,36 @@ namespace KybusEnigma.Lib.Hashing
             return output;
         }
 
-        public static byte[] Long2BytesArr(this long l)
-        {
-            var bytes = new byte[8];
+        public static byte[] Long2BytesArr(this long l) => BitConverter.GetBytes(l).Reverse().ToArray();
 
-            for (var i = 0; i < 8; i++)
-                bytes[i] = (byte)(l >> (7 - i) * 8);
+        public static byte[] Long2BytesArrLittleEndian(this long l) => BitConverter.GetBytes(l).ToArray();
 
-            return bytes;
-        }
+        public static byte[] UInt2BytesArr(this uint i) => BitConverter.GetBytes(i).Reverse().ToArray();
+
+        public static byte[] UInt2BytesArrLittleEndian(this uint i) => BitConverter.GetBytes(i).ToArray();
 
         public static byte[] UIntsArr2BytesArr(this uint[] arr)
         {
             var output = new byte[arr.Length * 4];
 
             for (var i = 0; i < arr.Length; i++)
-            for (var offset = 0; offset < 4; offset++)
-                output[4 * i + offset] = (byte) (arr[i] >> (3 - offset) * 8);
+            {
+                var bytes = UInt2BytesArr(arr[i]);
+                Array.Copy(bytes, 0, output, i * 4, bytes.Length);
+            }
+
+            return output;
+        }
+
+        public static byte[] UIntsArr2BytesArrLittleEndian(this uint[] arr)
+        {
+            var output = new byte[arr.Length * 4];
+
+            for (var i = 0; i < arr.Length; i++)
+            {
+                var bytes = UInt2BytesArrLittleEndian(arr[i]);
+                Array.Copy(bytes, 0, output, i * 4, bytes.Length);
+            }
 
             return output;
         }

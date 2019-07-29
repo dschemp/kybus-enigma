@@ -1,10 +1,10 @@
 ﻿using KybusEnigma.Lib.Encryption.Symmetric;
-using KybusEnigma.XUnit.Helper;
+using KybusEnigma.xUnit.Helper;
 using Xunit;
 
-namespace KybusEnigma.XUnit
+namespace KybusEnigma.xUnit
 {
-    public class UnitTestAES
+    public class UnitTestAes
     {
         /*
          * Test parameters from the official NIST FIPS 197 document
@@ -12,33 +12,55 @@ namespace KybusEnigma.XUnit
 
         #region Global Variables
 
-        readonly Aes _aes128, _aes192, _aes256;
-        readonly Aes _aes128cbc, _aes192cbc, _aes256cbc;
-        readonly byte[] _key128, _key192, _key256;
-        readonly byte[] _data;
-        readonly byte[] _cbcInitVector;
+        public readonly Aes Aes128, Aes192, Aes256;
+        public readonly Aes Aes128Cbc, Aes192Cbc, Aes256Cbc;
+        public readonly byte[] Key128, Key192, Key256;
+        public readonly byte[] CbcInitVector;
+
+        public TestVectorContainer<string, string> TestVectors;
 
         #endregion
 
         #region Setup / Initialization
 
-        public UnitTestAES()
+        public UnitTestAes()
         {
-            _key128 = HexBin.Decode("000102030405060708090a0b0c0d0e0f");
-            _key192 = HexBin.Decode("000102030405060708090a0b0c0d0e0f1011121314151617");
-            _key256 = HexBin.Decode("000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f");
+            Key128 = Converter.HexByteDecode("000102030405060708090a0b0c0d0e0f");
+            Key192 = Converter.HexByteDecode("000102030405060708090a0b0c0d0e0f1011121314151617");
+            Key256 = Converter.HexByteDecode("000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f");
 
-            _cbcInitVector = HexBin.Decode("00112233445566778899aabbccddeeff");
+            CbcInitVector = Converter.HexByteDecode("00112233445566778899aabbccddeeff");
 
-            _aes128 = new Aes(_key128);
-            _aes192 = new Aes(_key192);
-            _aes256 = new Aes(_key256);
+            Aes128 = Aes.Create(Key128);
+            Aes192 = Aes.Create(Key192);
+            Aes256 = Aes.Create(Key256);
 
-            _aes128cbc = new Aes(_key128, _cbcInitVector);
-            _aes192cbc = new Aes(_key192, _cbcInitVector);
-            _aes256cbc = new Aes(_key256, _cbcInitVector);
+            Aes128Cbc = Aes.Create(Key128, CbcInitVector);
+            Aes192Cbc = Aes.Create(Key192, CbcInitVector);
+            Aes256Cbc = Aes.Create(Key256, CbcInitVector);
 
-            _data = HexBin.Decode("00112233445566778899aabbccddeeff");
+            const string data = "00112233445566778899aabbccddeeff";
+
+            TestVectors = new TestVectorContainer<string, string>(Converter.HexByteDecode, Converter.HexByteDecode)
+            {
+                {"AES-128 Encryption"           , data, "69c4e0d86a7b0430d8cdb78070b4c55a" },
+                {"AES-128 Decryption"           , "69c4e0d86a7b0430d8cdb78070b4c55a", data },
+
+                {"AES-192 Encryption"           , data, "dda97ca4864cdfe06eaf70a0ec0d7191" },
+                {"AES-192 Decryption"           , "dda97ca4864cdfe06eaf70a0ec0d7191", data },
+
+                {"AES-256 Encryption"           , data, "8ea2b7ca516745bfeafc49904b496089" },
+                {"AES-256 Decryption"           , "8ea2b7ca516745bfeafc49904b496089", data },
+
+                {"AES-128 Encryption (CBC Mode)", data, "c6a13b37878f5b826f4f8162a1c8d879" },
+                {"AES-128 Decryption (CBC Mode)", "c6a13b37878f5b826f4f8162a1c8d879", data },
+
+                {"AES-192 Encryption (CBC Mode)", data, "916251821c73a522c396d62738019607" },
+                {"AES-192 Decryption (CBC Mode)", "916251821c73a522c396d62738019607", data },
+
+                {"AES-256 Encryption (CBC Mode)", data, "f29000b62a499fd0a9f39a6add2e7780" },
+                {"AES-256 Decryption (CBC Mode)", "f29000b62a499fd0a9f39a6add2e7780", data },
+            };
         }
 
         #endregion
@@ -46,19 +68,21 @@ namespace KybusEnigma.XUnit
         #region AES-128
 
         [Fact(DisplayName = "AES-128 Encryption")]
-        void Aes128_encrypt()
+        public void Aes128_encrypt()
         {
-            var ciphertext = _aes128.Encrypt(_data);
-            var expected = HexBin.Decode("69c4e0d86a7b0430d8cdb78070b4c55a");
+            var (data, expected) = TestVectors.Get("AES-128 Encryption");
+
+            var ciphertext = Aes128.Encrypt(data);
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
         [Fact(DisplayName = "AES-128 Decryption")]
-        void Aes128_decrypt()
+        public void Aes128_decrypt()
         {
-            var ciphertext = HexBin.Decode("69c4e0d86a7b0430d8cdb78070b4c55a");
-            var plaintext = _aes128.Decrypt(ciphertext);
-            CustomAssert.MatchArrays(plaintext, _data);
+            var (data, expected) = TestVectors.Get("AES-128 Decryption");
+
+            var plaintext = Aes128.Decrypt(data);
+            CustomAssert.MatchArrays(plaintext, expected);
         }
 
         #endregion
@@ -66,19 +90,21 @@ namespace KybusEnigma.XUnit
         #region AES-192
 
         [Fact(DisplayName = "AES-192 Encryption")]
-        void Aes192_encrypt()
+        public void Aes192_encrypt()
         {
-            var ciphertext = _aes192.Encrypt(_data);
-            var expected = HexBin.Decode("dda97ca4864cdfe06eaf70a0ec0d7191");
+            var (data, expected) = TestVectors.Get("AES-192 Encryption");
+
+            var ciphertext = Aes192.Encrypt(data);
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
         [Fact(DisplayName = "AES-192 Decryption")]
-        void Aes192_decrypt()
+        public void Aes192_decrypt()
         {
-            var ciphertext = HexBin.Decode("dda97ca4864cdfe06eaf70a0ec0d7191");
-            var plaintext = _aes192.Decrypt(ciphertext);
-            CustomAssert.MatchArrays(plaintext, _data);
+            var (data, expected) = TestVectors.Get("AES-192 Decryption");
+
+            var plaintext = Aes192.Decrypt(data);
+            CustomAssert.MatchArrays(plaintext, expected);
         }
 
         #endregion
@@ -86,19 +112,21 @@ namespace KybusEnigma.XUnit
         #region AES-256
 
         [Fact(DisplayName = "AES-256 Encryption")]
-        void Aes256_encrypt()
+        public void Aes256_encrypt()
         {
-            var ciphertext = _aes256.Encrypt(_data);
-            var expected = HexBin.Decode("8ea2b7ca516745bfeafc49904b496089");
+            var (data, expected) = TestVectors.Get("AES-256 Encryption");
+
+            var ciphertext = Aes256.Encrypt(data);
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
         [Fact(DisplayName = "AES-256 Decryption")]
-        void Aes256_decrypt()
+        public void Aes256_decrypt()
         {
-            var ciphertext = HexBin.Decode("8ea2b7ca516745bfeafc49904b496089");
-            var plaintext = _aes256.Decrypt(ciphertext);
-            CustomAssert.MatchArrays(plaintext, _data);
+            var (data, expected) = TestVectors.Get("AES-256 Decryption");
+
+            var plaintext = Aes256.Decrypt(data);
+            CustomAssert.MatchArrays(plaintext, expected);
         }
 
         #endregion
@@ -106,19 +134,21 @@ namespace KybusEnigma.XUnit
         #region AES-128 (CBC)
 
         [Fact(DisplayName = "AES-128 Encryption (CBC Mode)")]
-        void Aes128cbc_encrypt()
+        public void Aes128cbc_encrypt()
         {
-            var ciphertext = _aes128.Encrypt(_data);
-            var expected = HexBin.Decode("69c4e0d86a7b0430d8cdb78070b4c55a");
+            var (data, expected) = TestVectors.Get("AES-128 Encryption (CBC Mode)");
+
+            var ciphertext = Aes128Cbc.Encrypt(data);
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
         [Fact(DisplayName = "AES-128 Decryption (CBC Mode)")]
-        void Aes128cbc_decrypt()
+        public void Aes128cbc_decrypt()
         {
-            var ciphertext = HexBin.Decode("69c4e0d86a7b0430d8cdb78070b4c55a");
-            var plaintext = _aes128.Decrypt(ciphertext);
-            CustomAssert.MatchArrays(plaintext, _data);
+            var (data, expected) = TestVectors.Get("AES-128 Decryption (CBC Mode)");
+
+            var plaintext = Aes128Cbc.Decrypt(data);
+            CustomAssert.MatchArrays(plaintext, expected);
         }
 
         #endregion
@@ -126,19 +156,21 @@ namespace KybusEnigma.XUnit
         #region AES-192 (CBC)
 
         [Fact(DisplayName = "AES-192 Encryption (CBC Mode)")]
-        void Aes192cbc_encrypt()
+        public void Aes192cbc_encrypt()
         {
-            var ciphertext = _aes192.Encrypt(_data);
-            var expected = HexBin.Decode("dda97ca4864cdfe06eaf70a0ec0d7191");
+            var (data, expected) = TestVectors.Get("AES-192 Encryption (CBC Mode)");
+
+            var ciphertext = Aes192Cbc.Encrypt(data);
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
         [Fact(DisplayName = "AES-192 Decryption (CBC Mode)")]
-        void Aes192cbc_decrypt()
+        public void Aes192cbc_decrypt()
         {
-            var ciphertext = HexBin.Decode("dda97ca4864cdfe06eaf70a0ec0d7191");
-            var plaintext = _aes192.Decrypt(ciphertext);
-            CustomAssert.MatchArrays(plaintext, _data);
+            var (data, expected) = TestVectors.Get("AES-192 Decryption (CBC Mode)");
+
+            var plaintext = Aes192Cbc.Decrypt(data);
+            CustomAssert.MatchArrays(plaintext, expected);
         }
 
         #endregion
@@ -146,19 +178,21 @@ namespace KybusEnigma.XUnit
         #region AES-256 (CBC)
 
         [Fact(DisplayName = "AES-256 Encryption (CBC Mode)")]
-        void Aes256cbc_encrypt()
+        public void Aes256cbc_encrypt()
         {
-            var ciphertext = _aes256.Encrypt(_data);
-            var expected = HexBin.Decode("8ea2b7ca516745bfeafc49904b496089");
+            var (data, expected) = TestVectors.Get("AES-256 Encryption (CBC Mode)");
+
+            var ciphertext = Aes256Cbc.Encrypt(data);
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
         [Fact(DisplayName = "AES-256 Decryption (CBC Mode)")]
-        void Aes256cbc_decrypt()
+        public void Aes256cbc_decrypt()
         {
-            var ciphertext = HexBin.Decode("8ea2b7ca516745bfeafc49904b496089");
-            var plaintext = _aes256.Decrypt(ciphertext);
-            CustomAssert.MatchArrays(plaintext, _data);
+            var (data, expected) = TestVectors.Get("AES-256 Decryption (CBC Mode)");
+
+            var plaintext = Aes256Cbc.Decrypt(data);
+            CustomAssert.MatchArrays(plaintext, expected);
         }
 
         #endregion

@@ -5,9 +5,9 @@ namespace KybusEnigma.Lib.Hashing.Sha2
 {
     public sealed class Sha256 : Sha2Base
     {
-        public override byte[] Hash(byte[] input)
+        public override byte[] Hash(byte[] data)
         {
-            var paddedInput = Pad256(input);
+            var paddedInput = Pad256(data);
             // Convert input byte array to uint array for processing
             var arr = paddedInput.BytesArr2UIntArr();
 

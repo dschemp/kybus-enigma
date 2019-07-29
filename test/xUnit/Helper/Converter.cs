@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 
-namespace KybusEnigma.XUnit.Helper
+namespace KybusEnigma.xUnit.Helper
 {
-    public class HexBin
+    public class Converter
     {
-        public static byte[] Decode(string hex)
+        public static byte[] HexByteDecode(string hex)
         {
             hex = hex.Replace(" ", "");
             return Enumerable.Range(0, hex.Length)
@@ -14,9 +14,11 @@ namespace KybusEnigma.XUnit.Helper
                 .ToArray();
         }
 
-        public static string Encode(byte[] hex)
+        public static string HexByteEncode(byte[] hex)
         {
             return BitConverter.ToString(hex).Replace("-", "");
         }
+
+        public static byte[] Text2Bytes(string msg) => System.Text.Encoding.UTF8.GetBytes(msg);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace KybusEnigma.XUnit.Helper
+namespace KybusEnigma.xUnit.Helper
 {
     internal class CustomAssert : Assert
     {

@@ -4,7 +4,7 @@ namespace KybusEnigma.Lib.Hashing.MessageDigest
 {
     public sealed class Md6 : MessageDigestBase
     {
-        public override byte[] Hash(byte[] arr)
+        public override byte[] Hash(byte[] data)
         {
             throw new NotImplementedException();
         }
