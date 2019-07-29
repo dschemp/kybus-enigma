@@ -7,6 +7,8 @@
   - Symmetric
     - AES (+ CBC Mode)
 - Hashing
-  - SHA2 (-224, -256, 384, -512)
+  - Secure Hashing Algorithm
+    - SHA1
+    - SHA2 (-224, -256, 384, -512)
   - Message Digest
     - MD5
