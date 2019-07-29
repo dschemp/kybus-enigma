@@ -12,10 +12,10 @@ namespace KybusEnigma.xUnit
 
         #region Global Variables
 
-        public readonly Aes Aes128, Aes192, Aes256;
-        public readonly Aes Aes128Cbc, Aes192Cbc, Aes256Cbc;
-        public readonly byte[] Key128, Key192, Key256;
-        public readonly byte[] CbcInitVector;
+        public Aes Aes128, Aes192, Aes256;
+        public Aes Aes128Cbc, Aes192Cbc, Aes256Cbc;
+        public byte[] Key128, Key192, Key256;
+        public byte[] CbcInitVector;
 
         public TestVectorContainer<string, string> TestVectors;
 

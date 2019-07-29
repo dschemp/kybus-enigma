@@ -12,8 +12,14 @@ namespace KybusEnigma.xUnit
          * Test from https://www.di-mgt.com.au/sha_testvectors.html
          */
 
-        public readonly Hasher Sha224, Sha256, Sha384, Sha512;
+        #region Global Variables
+
+        public Hasher Sha224, Sha256, Sha384, Sha512;
         public TestVectorContainer<string, string> TestVectors;
+
+        #endregion
+
+        #region Setup / Initialization
 
         public UnitTestSha2()
         {
@@ -22,7 +28,7 @@ namespace KybusEnigma.xUnit
             Sha384 = new Sha384();
             Sha512 = new Sha512();
 
-            var oneMillionAs = new string('a', (int) 1e6);
+            var oneMillionAs = new string('a', (int)1e6);
 
             TestVectors = new TestVectorContainer<string, string>(Converter.Text2Bytes, Converter.HexByteDecode)
             {
@@ -50,9 +56,9 @@ namespace KybusEnigma.xUnit
                 {"Sha512 896 Bits"      , "abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu", "8e959b75dae313da 8cf4f72814fc143f 8f7779c6eb9f7fa1 7299aeadb6889018 501d289e4900f7e4 331b99dec4b5433a c7d329eeb6dd2654 5e96e55b874be909"},
                 {"Sha512 One Million As", oneMillionAs, "e718483d0ce76964 4e2e42c7bc15b463 8e1f98b13b204428 5632a803afa973eb de0ff244877ea60a 4cb0432ce577c31b eb009c5c2c49aa2e 4eadb217ad8cc09b"}
             };
-
-            // TODO: Init test data here as it effects duration of unit tests
         }
+
+        #endregion
 
         #region Sha224
 

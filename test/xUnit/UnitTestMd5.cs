@@ -13,8 +13,14 @@ namespace KybusEnigma.xUnit
          * https://tools.ietf.org/html/rfc1321
          */
 
+        #region Global Variables
+
         public Md5 Md5;
         public TestVectorContainer<string, string> TestVectors;
+
+        #endregion
+
+        #region Setup / Initialization
 
         public UnitTestMd5()
         {
@@ -31,6 +37,10 @@ namespace KybusEnigma.xUnit
                 {"LargeNumber" , "12345678901234567890123456789012345678901234567890123456789012345678901234567890", "57edf4a22be3c955ac49da2e2107b67a"},
             };
         }
+
+            #endregion
+
+        #region Test Cases
 
         [Fact(DisplayName = "MD5: \"The quick brown fox jumps over the lazy dog\"")]
         public void Md5_QuickBrownFox()
@@ -104,6 +114,6 @@ namespace KybusEnigma.xUnit
             CustomAssert.MatchArrays(hash, expected);
         }
 
-
+        #endregion
     }
 }
