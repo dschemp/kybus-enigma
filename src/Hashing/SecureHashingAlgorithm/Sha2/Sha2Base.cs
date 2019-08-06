@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
 {
@@ -34,7 +35,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
             }
         }
 
-        private void AppendLength(byte[] buffer, long originalLength)
+        protected void AppendLength(byte[] buffer, long originalLength)
         {
             var size = ByteOriented ? originalLength : originalLength * 8;
             var lengthBytes = size.Long2BytesArr(); // originalLength = length in bytes, i.e. we have to multiply with 8 to convert it into bits
@@ -152,6 +153,23 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
             0x28db77f523047d84, 0x32caab7b40c72493, 0x3c9ebe0a15c9bebc, 0x431d67c49c100d4c,
             0x4cc5d4becb3e42b6, 0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817
         };
+
+        #endregion
+
+        #region Streamreading
+
+        public int ReadInBlock(Stream s, out byte[] buffer)
+        {
+            int byteCount = 0;
+            int currentByte;
+            buffer = new byte[64];
+            while ((currentByte = s.ReadByte()) != -1 && byteCount < buffer.Length)
+            {
+                buffer[byteCount] = (byte)currentByte;
+                byteCount++;
+            }
+            return byteCount;
+        }
 
         #endregion
     }
