@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace KybusEnigma.Lib.Encryption.Symmetric
 {
@@ -211,6 +212,16 @@ namespace KybusEnigma.Lib.Encryption.Symmetric
                 lastBlock = cipherText;
             }
             return output;
+        }
+
+        public override byte[] Encrypt(Stream stream)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override byte[] Decrypt(Stream stream)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

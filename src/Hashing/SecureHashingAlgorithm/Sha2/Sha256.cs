@@ -33,7 +33,6 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
             // Process each block
             for (var i = 0; i < n; i++)
             {
-
                 // message block
                 Array.Copy(arr, i * m.Length, m, 0, m.Length);
 
@@ -104,23 +103,21 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
             var lengthAppended = false;
             var hasBeenPadded = false;
             int readByteCount;
-            long byteCount = 0;
             // Read and compute as long as the final length bytes have not yet been appended
             while (!lengthAppended)
             {
                 // Read in current block and pad if necessary
                 readByteCount = ReadInBlock(stream, out var buffer);
 
-                byteCount += readByteCount; // Increment length (in bytes)
-
                 if (readByteCount != buffer.Length && !hasBeenPadded) // Only add the 0x80 byte when it's not already been added
                 {
                     buffer[readByteCount] = 0x80; // Padding byte
                     hasBeenPadded = true;
                 }
-                if (readByteCount < 48) // If there is room for the length bytes, append them ...
+                if (readByteCount <= 48) // If there is room for the length bytes, append them ... 
+                    // (including the padding byte in the case of the padding consists of only the padding byte)
                 {
-                    AppendLength(buffer, byteCount);
+                    AppendLength(buffer, stream.Length);
                     lengthAppended = true; // ... and mark this block as the last
                 }
 

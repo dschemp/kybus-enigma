@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.IO;
+using System.Numerics;
 
 namespace KybusEnigma.Lib.Encryption.Asymmetric
 {
@@ -25,5 +26,15 @@ namespace KybusEnigma.Lib.Encryption.Asymmetric
         public override byte[] Encrypt(byte[] plainText) => BigInteger.ModPow(new BigInteger(plainText), new BigInteger(RsaModulus), new BigInteger(KeyPair.PublicKey)).ToByteArray();
 
         public override byte[] Decrypt(byte[] cipherText) => BigInteger.ModPow(new BigInteger(cipherText), new BigInteger(KeyPair.PrivateKey), new BigInteger(RsaModulus)).ToByteArray();
+
+        public override byte[] Encrypt(Stream stream)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override byte[] Decrypt(Stream stream)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

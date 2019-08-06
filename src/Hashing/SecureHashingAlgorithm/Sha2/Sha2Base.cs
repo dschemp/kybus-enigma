@@ -39,7 +39,9 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
         {
             var size = ByteOriented ? originalLength : originalLength * 8;
             var lengthBytes = size.Long2BytesArr(); // originalLength = length in bytes, i.e. we have to multiply with 8 to convert it into bits
-            Array.Copy(lengthBytes, 0, buffer, buffer.Length - 8, lengthBytes.Length); // Only copy last 8 bytes at the end as the first 8 bytes of the last 16 bytes will be practically always 0
+
+            for (var i = 0; i < 8; i++)
+                buffer[buffer.Length - 8 + i] |= lengthBytes[i]; // Bits
         }
 
         protected byte[] Pad256(byte[] buffer)
@@ -158,16 +160,15 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
 
         #region Streamreading
 
-        public int ReadInBlock(Stream s, out byte[] buffer)
+        public int ReadInBlock(Stream s, out byte[] buffer, int size = 64)
         {
             int byteCount = 0;
             int currentByte;
-            buffer = new byte[64];
-            while ((currentByte = s.ReadByte()) != -1 && byteCount < buffer.Length)
-            {
-                buffer[byteCount] = (byte)currentByte;
-                byteCount++;
-            }
+            buffer = new byte[size];
+
+            while (byteCount < buffer.Length && (currentByte = s.ReadByte()) != -1)
+                buffer[byteCount++] = (byte)currentByte;
+
             return byteCount;
         }
 
