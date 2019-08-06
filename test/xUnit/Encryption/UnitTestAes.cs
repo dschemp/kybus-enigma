@@ -17,7 +17,7 @@ namespace KybusEnigma.xUnit.Encryption
         public byte[] Key128, Key192, Key256;
         public byte[] CbcInitVector;
 
-        public TestVectorContainer<string, string> TestVectors;
+        public TestVectorContainer<string, byte[], string, byte[]> TestVectors;
 
         #endregion
 
@@ -41,7 +41,7 @@ namespace KybusEnigma.xUnit.Encryption
 
             const string data = "00112233445566778899aabbccddeeff";
 
-            TestVectors = new TestVectorContainer<string, string>(Converter.HexByteDecode, Converter.HexByteDecode)
+            TestVectors = new TestVectorContainer<string, byte[], string, byte[]>(Converter.HexByteDecode, Converter.HexByteDecode)
             {
                 {"AES-128 Encryption"           , data, "69c4e0d86a7b0430d8cdb78070b4c55a" },
                 {"AES-128 Decryption"           , "69c4e0d86a7b0430d8cdb78070b4c55a", data },

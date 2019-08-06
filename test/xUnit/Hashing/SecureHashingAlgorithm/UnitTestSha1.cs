@@ -14,7 +14,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
         #region Global Variables
 
         public Hasher Sha1;
-        public TestVectorContainer<string, string> TestVectors;
+        public TestVectorContainer<string, byte[], string, byte[]> TestVectors;
 
         #endregion
 
@@ -26,7 +26,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
             var oneMillionAs = new string('a', (int)1e6);
 
-            TestVectors = new TestVectorContainer<string, string>(Converter.Text2Bytes, Converter.HexByteDecode)
+            TestVectors = new TestVectorContainer<string, byte[], string, byte[]>(Converter.Text2Bytes, Converter.HexByteDecode)
             {
                 {"Sha1 abc"           , "abc", "a9993e36 4706816a ba3e2571 7850c26c 9cd0d89d"},
                 {"Sha1 Empty String"  , "", "da39a3ee 5e6b4b0d 3255bfef 95601890 afd80709"},

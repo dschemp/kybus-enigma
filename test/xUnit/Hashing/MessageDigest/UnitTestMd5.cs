@@ -13,7 +13,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
         #region Global Variables
 
         public Md5 Md5;
-        public TestVectorContainer<string, string> TestVectors;
+        public TestVectorContainer<string, byte[], string, byte[]> TestVectors;
 
         #endregion
 
@@ -22,7 +22,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
         public UnitTestMd5()
         {
             Md5 = new Md5();
-            TestVectors = new TestVectorContainer<string, string>(Converter.Text2Bytes, Converter.HexByteDecode)
+            TestVectors = new TestVectorContainer<string, byte[], string, byte[]>(Converter.Text2Bytes, Converter.HexByteDecode)
             {
                 {"Quick Brown Fox", "The quick brown fox jumps over the lazy dog", "9e107d9d372bb6826bd81d3542a419d6"},
                 {"Empty String"   , "", "d41d8cd98f00b204e9800998ecf8427e"},
