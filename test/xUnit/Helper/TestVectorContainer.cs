@@ -4,29 +4,36 @@ using System.Linq;
 
 namespace KybusEnigma.xUnit.Helper
 {
-    public class TestVectorContainer<TInputData, TInputExpected> : List<TestVector<TInputData, TInputExpected>>
+    public class TestVectorContainer<TInputData, TOutputData, TInputExpected, TOutputExpected> : List<TestVector<TInputData, TOutputData, TInputExpected, TOutputExpected>>
     {
-        Func<TInputData, byte[]> GetBytesOfData { get; }
-        Func<TInputExpected, byte[]> GetBytesOfExpected { get; }
+        Func<TInputData, TOutputData> GetBytesOfData { get; }
+        Func<TInputExpected, TOutputExpected> GetBytesOfExpected { get; }
 
-        public TestVectorContainer(Func<TInputData, byte[]> getBytesOfData, Func<TInputExpected, byte[]> getBytesOfExpected)
+        public TestVectorContainer(Func<TInputData, TOutputData> getBytesOfData, Func<TInputExpected, TOutputExpected> getBytesOfExpected)
         {
             GetBytesOfData = getBytesOfData;
             GetBytesOfExpected = getBytesOfExpected;
         }
 
-        public void Add(string title, TInputData data, TInputExpected expected) => this.Add(new TestVector<TInputData, TInputExpected>(title, GetBytesOfData, GetBytesOfExpected, data, expected));
+        public void Add(string title, TInputData data, TInputExpected expected) => this.Add(new TestVector<TInputData, TOutputData, TInputExpected, TOutputExpected>(title, GetBytesOfData, GetBytesOfExpected, data, expected));
 
-        public (byte[] data, byte[] expected) Get(int index)
+        public (TOutputData data, TOutputExpected expected) Get(int index)
         {
-            var item = this[index];
+            var item = this.ElementAt(index);
             return (item.Data, item.Expected);
         }
 
-        public (byte[] data, byte[] expected) Get(string name)
+        public (TOutputData data, TOutputExpected expected) Get(string name)
         {
             var item = this.First(s => s.Name == name);
             return (item.Data, item.Expected);
         }
+
+        public (TOutputData, TOutputExpected) this[string name]
+        {
+            get => Get(name);
+        }
+
+        public new (TOutputData, TOutputExpected) this[int idx] => Get(idx);
     }
 }

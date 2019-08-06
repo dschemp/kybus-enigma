@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace KybusEnigma.xUnit.Helper
 {
@@ -20,5 +22,7 @@ namespace KybusEnigma.xUnit.Helper
         }
 
         public static byte[] Text2Bytes(string msg) => System.Text.Encoding.UTF8.GetBytes(msg);
+
+        public static MemoryStream GenerateStreamFromString(string value) => new MemoryStream(Encoding.UTF8.GetBytes(value ?? ""));
     }
 }

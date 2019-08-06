@@ -2,22 +2,17 @@
 
 namespace KybusEnigma.xUnit.Helper
 {
-    public class TestVector<TInputData, TInputExpected>
+    public class TestVector<TInputData, TOutputData, TInputExpected, TOutputExpected>
     {
         public string Name { get; }
-        private Func<TInputData, byte[]> GetBytesOfData { get; }
-        private Func<TInputExpected, byte[]> GetBytesOfExpected { get; }
+        public TOutputData Data { get; }
+        public TOutputExpected Expected { get; }
 
-        public byte[] Data { get; }
-        public byte[] Expected { get; }
-
-        public TestVector(string name, Func<TInputData, byte[]> getBytesOfData, Func<TInputExpected, byte[]> getBytesOfExpected, TInputData data, TInputExpected expected)
+        public TestVector(string name, Func<TInputData, TOutputData> getBytesOfData, Func<TInputExpected, TOutputExpected> getBytesOfExpected, TInputData data, TInputExpected expected)
         {
             this.Name = name;
-            GetBytesOfData = getBytesOfData;
-            GetBytesOfExpected = getBytesOfExpected;
 
-            Data = GetBytesOfData(data);
+            Data = getBytesOfData(data);
             Expected = getBytesOfExpected(expected);
         }
     }
