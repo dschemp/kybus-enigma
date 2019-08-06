@@ -1,6 +1,7 @@
 ﻿using KybusEnigma.Lib.Hashing;
 using KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha1;
 using KybusEnigma.xUnit.Helper;
+using System.IO;
 using Xunit;
 
 namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
@@ -15,6 +16,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         public Hasher Sha1;
         public TestVectorContainer<string, byte[], string, byte[]> TestVectors;
+        public TestVectorContainer<string, Stream, string, byte[]> TestVectorsStream;
 
         #endregion
 
@@ -34,16 +36,25 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
                 {"Sha1 896 Bits"      , "abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu", "a49b2446 a02c645b f419f995 b6709125 3a04a259"},
                 {"Sha1 One Million As", oneMillionAs, "34aa973c d4c4daa4 f61eeb2b dbad2731 6534016f"},
             };
+
+            TestVectorsStream = new TestVectorContainer<string, Stream, string, byte[]>(Converter.GenerateStreamFromString, Converter.HexByteDecode)
+            {
+                {"Sha1-Stream abc"           , "abc", "a9993e36 4706816a ba3e2571 7850c26c 9cd0d89d"},
+                {"Sha1-Stream Empty String"  , "", "da39a3ee 5e6b4b0d 3255bfef 95601890 afd80709"},
+                {"Sha1-Stream 448 Bits"      , "abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq", "84983e44 1c3bd26e baae4aa1 f95129e5 e54670f1"},
+                {"Sha1-Stream 896 Bits"      , "abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu", "a49b2446 a02c645b f419f995 b6709125 3a04a259"},
+                {"Sha1-Stream One Million As", oneMillionAs, "34aa973c d4c4daa4 f61eeb2b dbad2731 6534016f"},
+            };
         }
 
         #endregion
 
-        #region Sha224
+        #region Sha1
 
         [Fact(DisplayName = "SHA-1: \"abc\"")]
         public void Sha1_abc()
         {
-            var (data, expected) = TestVectors.Get("Sha1 abc");
+            var (data, expected) = TestVectors["Sha1 abc"];
 
             var hash = Sha1.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
@@ -52,7 +63,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
         [Fact(DisplayName = "SHA-1: Empty String")]
         public void Sha1_EmptyString()
         {
-            var (data, expected) = TestVectors.Get("Sha1 Empty String");
+            var (data, expected) = TestVectors["Sha1 Empty String"];
 
             var hash = Sha1.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
@@ -61,7 +72,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
         [Fact(DisplayName = "SHA-1: 448 Bits")]
         public void Sha1_448Bits()
         {
-            var (data, expected) = TestVectors.Get("Sha1 448 Bits");
+            var (data, expected) = TestVectors["Sha1 448 Bits"];
 
             var hash = Sha1.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
@@ -70,7 +81,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
         [Fact(DisplayName = "SHA-1: 896 Bits")]
         public void Sha1_896Bits()
         {
-            var (data, expected) = TestVectors.Get("Sha1 896 Bits");
+            var (data, expected) = TestVectors["Sha1 896 Bits"];
 
             var hash = Sha1.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
@@ -79,7 +90,56 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
         [Fact(DisplayName = "SHA-1: One Million times 'a'")]
         public void Sha1_OneMillionSmallAs()
         {
-            var (data, expected) = TestVectors.Get("Sha1 One Million As");
+            var (data, expected) = TestVectors["Sha1 One Million As"];
+
+            var hash = Sha1.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        #endregion
+
+        #region Sha1-Stream
+
+        [Fact(DisplayName = "SHA-1-Stream: \"abc\"")]
+        public void Sha1Stream_abc()
+        {
+            var (data, expected) = TestVectorsStream["Sha1-Stream abc"];
+
+            var hash = Sha1.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        [Fact(DisplayName = "SHA-1-Stream: Empty String")]
+        public void Sha1Stream_EmptyString()
+        {
+            var (data, expected) = TestVectorsStream["Sha1-Stream Empty String"];
+
+            var hash = Sha1.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        [Fact(DisplayName = "SHA-1-Stream: 448 Bits")]
+        public void Sha1Stream_448Bits()
+        {
+            var (data, expected) = TestVectorsStream["Sha1-Stream 448 Bits"];
+
+            var hash = Sha1.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        [Fact(DisplayName = "SHA-1-Stream: 896 Bits")]
+        public void Sha1Stream_896Bits()
+        {
+            var (data, expected) = TestVectorsStream["Sha1-Stream 896 Bits"];
+
+            var hash = Sha1.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        [Fact(DisplayName = "SHA-1-Stream: One Million times 'a'")]
+        public void Sha1Stream_OneMillionSmallAs()
+        {
+            var (data, expected) = TestVectorsStream["Sha1-Stream One Million As"];
 
             var hash = Sha1.Hash(data);
             CustomAssert.MatchArrays(hash, expected);

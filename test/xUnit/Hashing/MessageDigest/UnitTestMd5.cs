@@ -37,12 +37,12 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
 
             #endregion
 
-        #region Test Cases
+        #region Md5
 
         [Fact(DisplayName = "MD5: \"The quick brown fox jumps over the lazy dog\"")]
         public void Md5_QuickBrownFox()
         {
-            var (data, expected) = TestVectors.Get("Quick Brown Fox");
+            var (data, expected) = TestVectors["Quick Brown Fox"];
 
             var hash = Md5.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
@@ -51,7 +51,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
         [Fact(DisplayName = "MD5: Empty String")]
         public void Md5_EmptyString()
         {
-            var (data, expected) = TestVectors.Get("Empty String");
+            var (data, expected) = TestVectors["Empty String"];
 
             var hash = Md5.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
@@ -60,7 +60,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
         [Fact(DisplayName = "MD5: \"a\"")]
         public void Md5_SingleSmallA()
         {
-            var (data, expected) = TestVectors.Get("a");
+            var (data, expected) = TestVectors["a"];
 
             var hash = Md5.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
@@ -69,7 +69,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
         [Fact(DisplayName = "MD5: \"abc\"")]
         public void Md5_abc()
         {
-            var (data, expected) = TestVectors.Get("abc");
+            var (data, expected) = TestVectors["abc"];
 
             var hash = Md5.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
@@ -78,7 +78,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
         [Fact(DisplayName = "MD5: \"message digest\"")]
         public void Md5_MessageDigest()
         {
-            var (data, expected) = TestVectors.Get("message digest");
+            var (data, expected) = TestVectors["message digest"];
 
             var hash = Md5.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
@@ -87,7 +87,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
         [Fact(DisplayName = "MD5: \"a-z\"")]
         public void Md5_a2z()
         {
-            var (data, expected) = TestVectors.Get("a-z");
+            var (data, expected) = TestVectors["a-z"];
 
             var hash = Md5.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
@@ -96,7 +96,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
         [Fact(DisplayName = "MD5: \"A-Za-z0-9\"")]
         public void Md5_A2Za2z029()
         {
-            var (data, expected) = TestVectors.Get("A-Za-z0-9");
+            var (data, expected) = TestVectors["A-Za-z0-9"];
 
             var hash = Md5.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
@@ -105,7 +105,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
         [Fact(DisplayName = "MD5: \"LargeNumber\"")]
         public void Md5_LargeNumber()
         {
-            var (data, expected) = TestVectors.Get("LargeNumber");
+            var (data, expected) = TestVectors["LargeNumber"];
 
             var hash = Md5.Hash(data);
             CustomAssert.MatchArrays(hash, expected);
