@@ -25,9 +25,10 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
                 0x5be0cd19137e2179  // H_7
             };
 
+            // amount of blocks
             var n = arr.Length / 16;
 
-            var m = new ulong[16]; // M_0 -> M_15
+            var m = new ulong[16]; // M_0 -> M_15, Message Block
             var w = new ulong[80]; // W_0 -> W_79, Message Schedule
 
             // Process each block
@@ -37,7 +38,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
                 Array.Copy(arr, i * m.Length, m, 0, m.Length);
 
                 // 1. Prepare the message schedule W:
-                Array.Copy(m, 0, w, 0, m.Length);
+                Array.Copy(m, 0, w, 0, m.Length); // Copy first block into start of message schedule w
                 foreach (var t in Enumerable.Range(start: 16, count: 64))
                     w[t] = SmallSigma1(w[t - 2]) + w[t - 7] + SmallSigma0(w[t - 15]) + w[t - 16];
 
@@ -115,7 +116,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
                     hasBeenPadded = true;
                 }
                 if (readByteCount < 112) // If there is room for the length bytes, append them ... 
-                                         // (including the padding byte in the case of the padding consists of only the padding byte)
+                    // (including the padding byte in the case of the padding consists of only the padding byte)
                 {
                     AppendLength(buffer, stream.Length);
                     lengthAppended = true; // ... and mark this block as the last
@@ -126,7 +127,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
                 var m = buffer.BytesArr2ULongArr(); // M_0 -> M_15, Current Block
 
                 // 1. Prepare the message schedule W:
-                Array.Copy(m, 0, w, 0, m.Length);
+                Array.Copy(m, 0, w, 0, m.Length); // Copy first block into start of message schedule w
                 foreach (var t in Enumerable.Range(start: 16, count: 64))
                     w[t] = SmallSigma1(w[t - 2]) + w[t - 7] + SmallSigma0(w[t - 15]) + w[t - 16];
 

@@ -25,6 +25,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
                 0xbefa4fa4  // H_7
             };
 
+            // amount of blocks
             var n = arr.Length / 16;
 
             var m = new uint[16]; // M_0 -> M_15, Current Block
@@ -33,11 +34,11 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
             // Process each block
             for (var i = 0; i < n; i++)
             {
-                // message block
+                // Copy data into current message block
                 Array.Copy(arr, i * m.Length, m, 0, m.Length);
 
                 // 1. Prepare the message schedule W:
-                Array.Copy(m, 0, w, 0, m.Length);
+                Array.Copy(m, 0, w, 0, m.Length); // Copy first block into start of message schedule w
                 foreach (var t in Enumerable.Range(16, 48))
                     w[t] = SmallSigma1(w[t - 2]) + w[t - 7] + SmallSigma0(w[t - 15]) + w[t - 16];
 
@@ -117,7 +118,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
                     hasBeenPadded = true;
                 }
                 if (readByteCount <= 48) // If there is room for the length bytes, append them ... 
-                                         // (including the padding byte in the case of the padding consists of only the padding byte)
+                    // (including the padding byte in the case of the padding consists of only the padding byte)
                 {
                     AppendLength(buffer, stream.Length);
                     lengthAppended = true; // ... and mark this block as the last

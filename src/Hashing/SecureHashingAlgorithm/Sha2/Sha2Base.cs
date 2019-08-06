@@ -157,21 +157,5 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
         };
 
         #endregion
-
-        #region Streamreading
-
-        public int ReadInBlock(Stream s, out byte[] buffer, int size = 64)
-        {
-            int byteCount = 0;
-            int currentByte;
-            buffer = new byte[size];
-
-            while (byteCount < buffer.Length && (currentByte = s.ReadByte()) != -1)
-                buffer[byteCount++] = (byte)currentByte;
-
-            return byteCount;
-        }
-
-        #endregion
     }
 }

@@ -25,19 +25,20 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
                 0x5be0cd19  // H_7
             };
 
+            // amount of blocks
             var n = arr.Length / 16;
 
-            var m = new uint[16]; // M_0 -> M_15, Current Block
+            var m = new uint[16]; // M_0 -> M_15, Message Block
             var w = new uint[64]; // W_0 -> W_63, Message Schedule
 
             // Process each block
             for (var i = 0; i < n; i++)
             {
-                // message block
+                // Copy data into current message block
                 Array.Copy(arr, i * m.Length, m, 0, m.Length);
 
                 // 1. Prepare the message schedule W:
-                Array.Copy(m, 0, w, 0, m.Length);
+                Array.Copy(m, 0, w, 0, m.Length); // Copy first block into start of message schedule w
                 foreach (var t in Enumerable.Range(16, 48))
                     w[t] = SmallSigma1(w[t - 2]) + w[t - 7] + SmallSigma0(w[t - 15]) + w[t - 16];
 
@@ -126,7 +127,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
                 var m = buffer.BytesArr2UIntArr(); // M_0 -> M_15, Current Block
 
                 // 1. Prepare the message schedule W:
-                Array.Copy(m, 0, w, 0, m.Length);
+                Array.Copy(m, 0, w, 0, m.Length); // Copy first block into start of message schedule w
                 foreach (var t in Enumerable.Range(16, 48))
                     w[t] = SmallSigma1(w[t - 2]) + w[t - 7] + SmallSigma0(w[t - 15]) + w[t - 16];
 
