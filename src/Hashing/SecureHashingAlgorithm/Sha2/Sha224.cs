@@ -6,6 +6,10 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
 {
     public sealed class Sha224 : Sha2Base
     {
+        public override string Name => "SHA2-224";
+
+        public override int HashLength => 224;
+
         public override byte[] Hash(byte[] data)
         {
             var paddedInput = Pad256(data);
@@ -172,7 +176,5 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
             var output = new[] { hash[0], hash[1], hash[2], hash[3], hash[4], hash[5], hash[6] };
             return output.UIntsArr2BytesArr();
         }
-
-        public override string GetName() => "SHA2-224";
     }
 }

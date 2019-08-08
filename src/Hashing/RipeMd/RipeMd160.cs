@@ -7,7 +7,9 @@ namespace KybusEnigma.Lib.Hashing.RipeMd
 {
     public class RipeMd160 : RipeMdBase
     {
-        public override string GetName() => "RIPEMD-160";
+        public override string Name => "RIPEMD-160";
+
+        public override int HashLength => 160;
 
         public override byte[] Hash(byte[] data)
         {

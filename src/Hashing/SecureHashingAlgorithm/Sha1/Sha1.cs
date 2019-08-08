@@ -6,6 +6,10 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha1
 {
     public class Sha1 : Hasher
     {
+        public override string Name => "SHA-1";
+
+        public override int HashLength => 160;
+
         public override byte[] Hash(byte[] data)
         {
             var paddedInput = Pad(data);
@@ -142,8 +146,6 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha1
 
             return hash.UIntsArr2BytesArr();
         }
-
-        public override string GetName() => "SHA-1";
 
         #region Helpers, Functions and Constants
 

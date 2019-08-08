@@ -5,9 +5,11 @@ using System.Text;
 
 namespace KybusEnigma.Lib.Hashing.RipeMd
 {
-    public class RipeMd160 : RipeMdBase
+    public class RipeMd128 : RipeMdBase
     {
-        public override string GetName() => "RIPEMD-128";
+        public override string Name => "RIPEMD-128";
+
+        public override int HashLength => 128;
 
         public override byte[] Hash(byte[] data)
         {

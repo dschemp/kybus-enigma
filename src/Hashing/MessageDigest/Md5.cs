@@ -5,6 +5,10 @@ namespace KybusEnigma.Lib.Hashing.MessageDigest
 {
     public sealed class Md5 : MessageDigestBase
     {
+        public override string Name => "MD5";
+
+        public override int HashLength => 128;
+
         public override byte[] Hash(byte[] data)
         {
             var paddedInput = PadMd5(data);
@@ -82,7 +86,5 @@ namespace KybusEnigma.Lib.Hashing.MessageDigest
         {
             throw new NotImplementedException();
         }
-
-        public override string GetName() => "MD5";
     }
 }

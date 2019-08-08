@@ -6,7 +6,8 @@ namespace KybusEnigma.Lib.Hashing
     {
         public abstract byte[] Hash(byte[] data);
         public abstract byte[] Hash(Stream stream);
-        public abstract string GetName();
+        public abstract string Name { get; }
+        public abstract int HashLength { get; }
 
         #region Common Methods
 
