@@ -16,6 +16,7 @@ namespace KybusEnigma.xUnit.Helper
         }
 
         public void Add(string title, TInputData data, TInputExpected expected) => this.Add(new TestVector<TInputData, TOutputData, TInputExpected, TOutputExpected>(title, GetBytesOfData, GetBytesOfExpected, data, expected));
+        public void Add(TInputData data, TInputExpected expected) => this.Add(new TestVector<TInputData, TOutputData, TInputExpected, TOutputExpected>(null, GetBytesOfData, GetBytesOfExpected, data, expected));
 
         public (TOutputData data, TOutputExpected expected) Get(int index)
         {
