@@ -88,7 +88,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #endregion
 
-        #region Sha224
+        #region SHA224
 
         [Fact(DisplayName = "SHA-224: \"abc\"")]
         public void Sha224_abc()
@@ -137,7 +137,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #endregion
 
-        #region Sha256
+        #region SHA256
 
         [Fact(DisplayName = "SHA-256: \"abc\"")]
         public void Sha256_abc()
@@ -186,7 +186,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #endregion
 
-        #region Sha384
+        #region SHA384
 
         [Fact(DisplayName = "SHA-384: \"abc\"")]
         public void Sha384_abc()
@@ -235,7 +235,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #endregion
 
-        #region Sha512
+        #region SHA512
 
         [Fact(DisplayName = "SHA-512: \"abc\"")]
         public void Sha512_abc()
@@ -284,7 +284,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #endregion
 
-        #region Sha224-Stream
+        #region SHA224-Stream
 
         [Fact(DisplayName = "SHA-224-Stream: \"abc\"")]
         public void Sha224Stream_abc()
@@ -333,7 +333,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #endregion
 
-        #region Sha256-Stream
+        #region SHA256-Stream
 
         [Fact(DisplayName = "SHA-256-Stream: \"abc\"")]
         public void Sha256Stream_abc()
@@ -382,7 +382,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #endregion
 
-        #region Sha384-Stream
+        #region SHA384-Stream
 
         [Fact(DisplayName = "SHA-384-Stream: \"abc\"")]
         public void Sha384Stream_abc()
@@ -431,7 +431,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #endregion
 
-        #region Sha512-Stream
+        #region SHA512-Stream
 
         [Fact(DisplayName = "SHA-512-Stream: \"abc\"")]
         public void Sha512Stream_abc()

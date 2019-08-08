@@ -37,7 +37,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
 
             #endregion
 
-        #region Md5
+        #region MD5
 
         [Fact(DisplayName = "MD5: \"The quick brown fox jumps over the lazy dog\"")]
         public void Md5_QuickBrownFox()

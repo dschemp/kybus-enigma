@@ -49,7 +49,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #endregion
 
-        #region Sha1
+        #region SHA1
 
         [Fact(DisplayName = "SHA-1: \"abc\"")]
         public void Sha1_abc()
@@ -98,7 +98,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #endregion
 
-        #region Sha1-Stream
+        #region SHA1-Stream
 
         [Fact(DisplayName = "SHA-1-Stream: \"abc\"")]
         public void Sha1Stream_abc()
