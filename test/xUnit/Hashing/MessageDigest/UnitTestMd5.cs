@@ -102,7 +102,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5: \"LargeNumber\"")]
+        [Fact(DisplayName = "MD5: 8 times \"1234567890\"")]
         public void Md5_LargeNumber()
         {
             var (data, expected) = TestVectors["LargeNumber"];

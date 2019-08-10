@@ -11,8 +11,6 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
             Sha512
         }
 
-        public bool ByteOriented { get; set; } = false;
-
         #region Padding
 
         private static int CalcNewArrayLength(int length, Sha2Type type)
@@ -33,15 +31,6 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
                 while (length % 128 != 112) length++;
                 return length;
             }
-        }
-
-        protected void AppendLength(byte[] buffer, long originalLength)
-        {
-            var size = ByteOriented ? originalLength : originalLength * 8;
-            var lengthBytes = size.Long2BytesArr(); // originalLength = length in bytes, i.e. we have to multiply with 8 to convert it into bits
-
-            for (var i = 0; i < 8; i++)
-                buffer[buffer.Length - 8 + i] |= lengthBytes[i]; // Bits
         }
 
         protected byte[] Pad256(byte[] buffer)
