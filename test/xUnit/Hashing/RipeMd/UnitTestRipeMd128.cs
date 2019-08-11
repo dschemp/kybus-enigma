@@ -27,7 +27,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
 
         public UnitTestRipeMd128()
         {
-            RipeMd128 = new RipeMd160();
+            RipeMd128 = new RipeMd128();
 
             var oneMillionAs = new string('a', (int)1e6);
 
