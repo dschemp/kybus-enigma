@@ -13,39 +13,50 @@ Because it's a hobby there is no schedule on when I do something or not.
 
 ## Available Cryptographic Features:
 
-| Category   | Subcategory              | Type       | Stream Support | Additional Features |
-|------------|--------------------------|------------|----------------|---------------------|
-| Encryption | Symmetric                | AES        |   Planned      | CBC Mode            |
-|            | Asymmetric               | RSA        |                |                     |
-| Hashing    | Secure Hashing Algorithm | SHA1       |        ✓       |                     |
-|            |                          | SHA2       |        ✓       |                     |
-|            | Message Digest           | MD4        |   Planned      |                     |
-|            |                          | MD5        |   Planned      |                     |
-|            | RIPEMD                   | RIPEMD128  |   Planned      |                     |
-|            |                          | RIPEMD160  |   Planned      |                     |
+| Category   | Subcategory              | Type             | Stream Support | Additional Features |
+|------------|--------------------------|------------------|----------------|---------------------|
+| Encryption | Symmetric                | AES              |   Planned      | CBC Mode            |
+|            | Asymmetric               | RSA              |                |                     |
+| Hashing    | Secure Hashing Algorithm | SHA1             |        ✓       |                     |
+|            |                          | SHA2             |        ✓       |                     |
+|            | Message Digest           | MD4              |   Planned      |                     |
+|            |                          | MD5              |   Planned      |                     |
+|            | RIPEMD                   | RIPEMD128        |   Planned      |                     |
+|            |                          | RIPEMD160        |   Planned      |                     |
+| Padding    | -                        | ZeroPadding      |   Planned      |                     |
+|            |                          | BlockBytePadding |   Planned      |                     |
 
 **Namespace diagram:** (`*` indicates a class; only accessible classes shown)
 ```
 .
 ├── Encryption
 |   ├── Asymmetric
-|   |   └── Rsa*
-|   └── Symmetric
-|       └── Aes*
-└── Hashing
-    ├── MessageDigest
-    |   ├── Md4*
-    |   ├── Md5*
-    |   └── Md6*
-    ├── RipeMd
-    |   ├── RipeMd128*
-    |   └── RipeMd160*
-    └── SecureHashingAlgorithm
-        ├── Sha1
-        |   └── Sha1*
-        └── Sha2
-            ├── Sha224*
-            ├── Sha256*
-            ├── Sha384*
-            └── Sha512*
+|   |   ├── Rsa*
+|   |   └── AsymmetricKeyPair*
+|   ├── Symmetric
+|   |    └── Aes*
+|   └── EncryptionBase* (abstract, base class)
+├── Hashing
+|   ├── MessageDigest
+|   |   ├── Md4*
+|   |   ├── Md5*
+|   |   ├── Md6*
+|   |   └── MessageDigestBase* (abstract; base class)
+|   ├── RipeMd
+|   |   ├── RipeMd128*
+|   |   ├── RipeMd128*
+|   |   └── RipeMdBase* (abstract; base class)
+|   ├── SecureHashingAlgorithm
+|   |   ├── Sha1
+|   |   |   └── Sha1*
+|   |   └── Sha2
+|   |       ├── Sha224*
+|   |       ├── Sha256*
+|   |       ├── Sha384*
+|   |       ├── Sha512*
+|   |       └── Sha2Base* (abstract; base class)
+|   └── Hasher* (abstract; base class)
+└── Padding
+    ├── ZeroPadding*
+    └── BlockBytePadding*
 ```

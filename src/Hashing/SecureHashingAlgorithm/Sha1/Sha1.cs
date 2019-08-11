@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KybusEnigma.Lib.Padding;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -12,7 +13,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha1
 
         public override byte[] Hash(byte[] data)
         {
-            var paddedInput = Pad(data);
+            var paddedInput = BlockBytePadding.PadToBlockSize(data, 64, 8);
             // Convert input byte array to uint array for processing
             var arr = paddedInput.BytesArr2UIntArr();
 
@@ -148,42 +149,6 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha1
         }
 
         #region Helpers, Functions and Constants
-
-        private static int CalcNewArrayLength(int length)
-        {
-            if (length % 64 == 56)
-                return length + 64;
-
-            while (length % 64 != 56) length++;
-            return length;
-        }
-
-        private void AppendLength(byte[] buffer, long originalLength)
-        {
-            var lengthBytes = (originalLength * 8).Long2BytesArr(); // originalLength = length in bytes, i.e. we have to multiply with 8 to convert it into bits
-            for (var i = 0; i < 8; i++)
-                buffer[buffer.Length - 8 + i] |= lengthBytes[i]; // Bits
-        }
-
-        protected byte[] Pad(byte[] buffer)
-        {
-            if (buffer == null)
-                buffer = new byte[0];
-
-            var newArrayLength = CalcNewArrayLength(buffer.Length); // Not including padding bytes
-            var outputArray = new byte[newArrayLength + 8];
-
-            // copy exisiting stuff into new array
-            Array.Copy(buffer, 0, outputArray, 0, buffer.Length);
-
-            // pad first with a 1 bit / 0x80 byte, rest is already filled with \0 bytes
-            outputArray[buffer.Length] = 0x80;
-
-            // append the length bytes to the output array
-            AppendLength(outputArray, buffer.GetLongLength(0));
-
-            return outputArray;
-        }
 
         protected uint F(int t, uint b, uint c, uint d)
         {

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using KybusEnigma.Lib.Padding;
+using System;
 using System.IO;
+using System.Linq;
 
 namespace KybusEnigma.Lib.Hashing.MessageDigest
 {
@@ -11,7 +13,7 @@ namespace KybusEnigma.Lib.Hashing.MessageDigest
 
         public override byte[] Hash(byte[] data)
         {
-            var paddedInput = PadMd4Md5(data);
+            var paddedInput = BlockBytePadding.PadToBlockSize(data, 64, 8, true);
             // Convert bytes to uint array for processing
             var arr = paddedInput.BytesArr2UIntArrLittleEndian();
 
@@ -40,7 +42,7 @@ namespace KybusEnigma.Lib.Hashing.MessageDigest
                 var d = hash[3];
 
                 // 2. Perform the main hash computation:
-                for (var i = 0; i < 64; i++)
+                foreach (var i in Enumerable.Range(0, 64))
                 {
                     uint f;
                     int g;

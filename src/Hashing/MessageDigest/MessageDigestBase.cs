@@ -4,36 +4,6 @@ namespace KybusEnigma.Lib.Hashing.MessageDigest
 {
     public abstract class MessageDigestBase : Hasher
     {
-        protected byte[] PadMd4Md5(byte[] buffer)
-        {
-            if (buffer == null)
-                buffer = new byte[0];
-
-            var newArrayLength = CalcNewArrayLength(buffer.Length); // Not including padding bytes
-            var outputArray = new byte[newArrayLength + 8];
-
-            // copy exisiting stuff into new array
-            Array.Copy(buffer, 0, outputArray, 0, buffer.Length);
-
-            // pad first with a 1 bit / 0x80 byte, rest is already filled with \0 bytes
-            outputArray[buffer.Length] = 0x80;
-
-            // append the length bytes to the output array in LE
-            AppendLength(outputArray, buffer.GetLongLength(0), true);
-
-            return outputArray;
-        }
-
-        private static int CalcNewArrayLength(int length)
-        {
-            // If array length is already 56 bytes, there is no space left for the padding byte, so append 64 bytes
-            if (length % 64 == 56)
-                return length + 64;
-
-            while (length % 64 != 56) length++; // TODO: Improve
-            return length;
-        }
-
         #region Md5 Constants & Functions
 
         protected uint F(uint x, uint y, uint z) => (x & y) | (~x & z);

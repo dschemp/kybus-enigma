@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KybusEnigma.Lib.Padding;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -12,7 +13,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
 
         public override byte[] Hash(byte[] data)
         {
-            var paddedInput = Pad512(data);
+            var paddedInput = BlockBytePadding.PadToBlockSize(data, 128, 16);
             // Convert input bytes to ulong array
             var arr = paddedInput.BytesArr2ULongArr();
 
@@ -59,7 +60,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
                 // 3. Perform the main hash computation:
                 foreach (var t in Enumerable.Range(0, 80))
                 {
-                    var t1 = h + BigSigma1(e) + Ch(e, f, g) + K512[t] + w[t];
+                    var t1 = h + BigSigma1(e) + Ch(e, f, g) + K_512[t] + w[t];
                     var t2 = BigSigma0(a) + Maj(a, b, c);
                     h = g;
                     g = f;
@@ -148,7 +149,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
                 // 3. Perform the main hash computation:
                 foreach (var t in Enumerable.Range(0, 80))
                 {
-                    var t1 = h + BigSigma1(e) + Ch(e, f, g) + K512[t] + w[t];
+                    var t1 = h + BigSigma1(e) + Ch(e, f, g) + K_512[t] + w[t];
                     var t2 = BigSigma0(a) + Maj(a, b, c);
                     h = g;
                     g = f;

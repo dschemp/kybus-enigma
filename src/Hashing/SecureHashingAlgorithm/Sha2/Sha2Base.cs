@@ -11,70 +11,6 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
             Sha512
         }
 
-        #region Padding
-
-        private static int CalcNewArrayLength(int length, Sha2Type type)
-        {
-            if (type == Sha2Type.Sha256)
-            {
-                if (length % 64 == 56)
-                    return length + 64;
-
-                while (length % 64 != 56) length++;
-                return length;
-            }
-            else
-            {
-                if (length % 128 == 112)
-                    return length + 128;
-
-                while (length % 128 != 112) length++;
-                return length;
-            }
-        }
-
-        protected byte[] Pad256(byte[] buffer)
-        {
-            if (buffer == null)
-                buffer = new byte[0];
-
-            var newArrayLength = CalcNewArrayLength(buffer.Length, Sha2Type.Sha256); // Not including padding bytes
-            var outputArray = new byte[newArrayLength + 8];
-
-            // copy exisiting stuff into new array
-            Array.Copy(buffer, 0, outputArray, 0, buffer.Length);
-
-            // pad first with a 1 bit / 0x80 byte, rest is already filled with \0 bytes
-            outputArray[buffer.Length] = 0x80;
-
-            // append the length bytes to the output array
-            AppendLength(outputArray, buffer.GetLongLength(0));
-
-            return outputArray;
-        }
-
-        protected byte[] Pad512(byte[] buffer)
-        {
-            if (buffer == null)
-                buffer = new byte[0];
-
-            var newArrayLength = CalcNewArrayLength(buffer.Length, Sha2Type.Sha512);
-            var outputArray = new byte[newArrayLength + 16];
-
-            // copy exisiting stuff into new array
-            Array.Copy(buffer, 0, outputArray, 0, buffer.Length);
-
-            // pad first with a 1 bit / 0x80 byte, rest is already filled with \0 bytes
-            outputArray[buffer.Length] = 0x80;
-
-            // append the length bytes to the output array
-            AppendLength(outputArray, buffer.GetLongLength(0));
-
-            return outputArray;
-        }
-
-        #endregion
-
         #region Sha256 Functions
 
         protected uint Ch(uint x, uint y, uint z) => (x & y) ^ ((~x) & z);
@@ -101,7 +37,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
 
         #region Constants
 
-        protected readonly uint[] K256 =
+        protected readonly uint[] K_256 =
         {
             0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
             0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
@@ -121,7 +57,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
             0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
         };
 
-        protected readonly ulong[] K512 =
+        protected readonly ulong[] K_512 =
         {
             0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe9b5dba58189dbbc,
             0x3956c25bf348b538, 0x59f111f1b605d019, 0x923f82a4af194f9b, 0xab1c5ed5da6d8118,
