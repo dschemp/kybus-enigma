@@ -1,5 +1,6 @@
 ﻿using KybusEnigma.Lib.Hashing.MessageDigest;
 using KybusEnigma.xUnit.Helper;
+using System.IO;
 using Xunit;
 
 namespace KybusEnigma.xUnit.Hashing.MessageDigest
@@ -14,6 +15,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
 
         public Md5 Md5;
         public TestVectorContainer<string, byte[], string, byte[]> TestVectors;
+        public TestVectorContainer<string, Stream, string, byte[]> TestVectorsStream;
 
         #endregion
 
@@ -26,16 +28,28 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             {
                 {"Quick Brown Fox", "The quick brown fox jumps over the lazy dog", "9e107d9d372bb6826bd81d3542a419d6"},
                 {"Empty String"   , "", "d41d8cd98f00b204e9800998ecf8427e"},
-                {"a" , "a", "0cc175b9c0f1b6a831c399e269772661"},
-                {"abc" , "abc", "900150983cd24fb0d6963f7d28e17f72"},
+                {"a"              , "a", "0cc175b9c0f1b6a831c399e269772661"},
+                {"abc"            , "abc", "900150983cd24fb0d6963f7d28e17f72"},
                 {"message digest" , "message digest", "f96b697d7cb7938d525a2f31aaf161d0"},
-                {"a-z" , "abcdefghijklmnopqrstuvwxyz", "c3fcd3d76192e4007dfb496cca67e13b"},
-                {"A-Za-z0-9" , "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", "d174ab98d277d9f5a5611c2c9f419d9f"},
-                {"LargeNumber" , "12345678901234567890123456789012345678901234567890123456789012345678901234567890", "57edf4a22be3c955ac49da2e2107b67a"},
+                {"a-z"            , "abcdefghijklmnopqrstuvwxyz", "c3fcd3d76192e4007dfb496cca67e13b"},
+                {"A-Za-z0-9"      , "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", "d174ab98d277d9f5a5611c2c9f419d9f"},
+                {"LargeNumber"    , "12345678901234567890123456789012345678901234567890123456789012345678901234567890", "57edf4a22be3c955ac49da2e2107b67a"},
+            };
+
+            TestVectorsStream = new TestVectorContainer<string, Stream, string, byte[]>(Converter.GenerateStreamFromString, Converter.HexByteDecode)
+            {
+                {"Quick Brown Fox", "The quick brown fox jumps over the lazy dog", "9e107d9d372bb6826bd81d3542a419d6"},
+                {"Empty String"   , "", "d41d8cd98f00b204e9800998ecf8427e"},
+                {"a"              , "a", "0cc175b9c0f1b6a831c399e269772661"},
+                {"abc"            , "abc", "900150983cd24fb0d6963f7d28e17f72"},
+                {"message digest" , "message digest", "f96b697d7cb7938d525a2f31aaf161d0"},
+                {"a-z"            , "abcdefghijklmnopqrstuvwxyz", "c3fcd3d76192e4007dfb496cca67e13b"},
+                {"A-Za-z0-9"      , "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", "d174ab98d277d9f5a5611c2c9f419d9f"},
+                {"LargeNumber"    , "12345678901234567890123456789012345678901234567890123456789012345678901234567890", "57edf4a22be3c955ac49da2e2107b67a"},
             };
         }
 
-            #endregion
+        #endregion
 
         #region MD5
 
@@ -112,5 +126,82 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
         }
 
         #endregion
+
+        #region MD5-Stream
+
+        [Fact(DisplayName = "MD5-Stream: \"The quick brown fox jumps over the lazy dog\"")]
+        public void Md5Stream_QuickBrownFox()
+        {
+            var (data, expected) = TestVectorsStream["Quick Brown Fox"];
+
+            var hash = Md5.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        [Fact(DisplayName = "MD5-Stream: Empty String")]
+        public void Md5Stream_EmptyString()
+        {
+            var (data, expected) = TestVectorsStream["Empty String"];
+
+            var hash = Md5.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        [Fact(DisplayName = "MD5-Stream: \"a\"")]
+        public void Md5Stream_SingleSmallA()
+        {
+            var (data, expected) = TestVectorsStream["a"];
+
+            var hash = Md5.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        [Fact(DisplayName = "MD5-Stream: \"abc\"")]
+        public void Md5Stream_abc()
+        {
+            var (data, expected) = TestVectorsStream["abc"];
+
+            var hash = Md5.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        [Fact(DisplayName = "MD5-Stream: \"message digest\"")]
+        public void Md5Stream_MessageDigest()
+        {
+            var (data, expected) = TestVectorsStream["message digest"];
+
+            var hash = Md5.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        [Fact(DisplayName = "MD5-Stream: \"a-z\"")]
+        public void Md5Stream_a2z()
+        {
+            var (data, expected) = TestVectorsStream["a-z"];
+
+            var hash = Md5.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        [Fact(DisplayName = "MD5-Stream: \"A-Za-z0-9\"")]
+        public void Md5Stream_A2Za2z029()
+        {
+            var (data, expected) = TestVectorsStream["A-Za-z0-9"];
+
+            var hash = Md5.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        [Fact(DisplayName = "MD5-Stream: 8 times \"1234567890\"")]
+        public void Md5Stream_LargeNumber()
+        {
+            var (data, expected) = TestVectorsStream["LargeNumber"];
+
+            var hash = Md5.Hash(data);
+            CustomAssert.MatchArrays(hash, expected);
+        }
+
+        #endregion
+
     }
 }
