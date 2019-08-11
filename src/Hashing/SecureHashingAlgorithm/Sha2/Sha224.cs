@@ -13,7 +13,7 @@ namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
 
         public override byte[] Hash(byte[] data)
         {
-            var paddedInput = BlockBytePadding.PadToBlockSize(data, 64, 8);
+            var paddedInput = LengthPadding.PadToBlockSize(data, 64, 8);
             // Convert input byte array to uint array for processing
             var arr = paddedInput.BytesArr2UIntArr();
 

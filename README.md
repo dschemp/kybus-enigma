@@ -13,18 +13,18 @@ Because it's a hobby there is no schedule on when I do something or not.
 
 ## Available Cryptographic Features:
 
-| Category   | Subcategory              | Type             | Stream Support | Additional Features |
-|------------|--------------------------|------------------|----------------|---------------------|
-| Encryption | Symmetric                | AES              |   Planned      | CBC Mode            |
-|            | Asymmetric               | RSA              |                |                     |
-| Hashing    | Secure Hashing Algorithm | SHA1             |        ✓       |                     |
-|            |                          | SHA2             |        ✓       |                     |
-|            | Message Digest           | MD4              |   Planned      |                     |
-|            |                          | MD5              |   Planned      |                     |
-|            | RIPEMD                   | RIPEMD128        |   Planned      |                     |
-|            |                          | RIPEMD160        |   Planned      |                     |
-| Padding    | -                        | ZeroPadding      |   Planned      |                     |
-|            |                          | BlockBytePadding |   Planned      |                     |
+| Category   | Subcategory              | Type          | Stream Support | Additional Features |
+|------------|--------------------------|---------------|----------------|---------------------|
+| Encryption | Symmetric                | AES           |   Planned      | CBC Mode            |
+|            | Asymmetric               | RSA           |                |                     |
+| Hashing    | Secure Hashing Algorithm | SHA1          |        ✓       |                     |
+|            |                          | SHA2          |        ✓       |                     |
+|            | Message Digest           | MD4           |   Planned      |                     |
+|            |                          | MD5           |   Planned      |                     |
+|            | RIPEMD                   | RIPEMD128     |   Planned      |                     |
+|            |                          | RIPEMD160     |   Planned      |                     |
+| Padding    | -                        | ZeroPadding   |   Planned      |                     |
+|            |                          | LengthPadding |   Planned      |                     |
 
 **Namespace diagram:** (`*` indicates a class; only accessible classes shown)
 ```
@@ -58,5 +58,5 @@ Because it's a hobby there is no schedule on when I do something or not.
 |   └── Hasher* (abstract; base class)
 └── Padding
     ├── ZeroPadding*
-    └── BlockBytePadding*
+    └── LengthPadding*
 ```

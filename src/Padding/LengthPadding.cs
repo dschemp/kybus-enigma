@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KybusEnigma.Lib.Padding
 {
-    public static class BlockBytePadding
+    public static class LengthPadding
     {
         public static byte[] PadToBlockSize(byte[] buffer, long blockSize, int lengthSize = 8, bool appendLengthInLittleEndian = false, bool appendLengthInBits = true)
         {

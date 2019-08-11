@@ -14,7 +14,7 @@ namespace KybusEnigma.Lib.Hashing.MessageDigest
 
         public override byte[] Hash(byte[] data)
         {
-            var paddedInput = BlockBytePadding.PadToBlockSize(data, 64, 8, true);
+            var paddedInput = LengthPadding.PadToBlockSize(data, 64, 8, true);
             // Convert bytes to uint array for processing
             var arr = paddedInput.BytesArr2UIntArrLittleEndian();
 
