@@ -10,7 +10,9 @@
     <PackageProjectUrl>https://github.com/dschemp/kybus-enigma</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dschemp/kybus-enigma</RepositoryUrl>
     <Authors>dschemp</Authors>
-    <Version>0.1</Version>
+    <Version>0.1.1</Version>
+    <PackageIconUrl>https://raw.githubusercontent.com/dschemp/kybus-enigma/master/docs/icon.png</PackageIconUrl>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
