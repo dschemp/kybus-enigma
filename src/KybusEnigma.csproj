@@ -4,6 +4,20 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>KybusEnigma</RootNamespace>
     <AssemblyName>KybusEnigma</AssemblyName>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/dschemp/kybus-enigma</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dschemp/kybus-enigma</RepositoryUrl>
+    <Authors>dschemp</Authors>
+    <Version>0.1</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
