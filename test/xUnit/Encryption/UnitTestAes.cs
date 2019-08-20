@@ -1,4 +1,4 @@
-﻿using KybusEnigma.Lib.Encryption.Symmetric;
+﻿using KybusEnigma.Encryption.Symmetric;
 using KybusEnigma.xUnit.Helper;
 using Xunit;
 

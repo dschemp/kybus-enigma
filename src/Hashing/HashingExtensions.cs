@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace KybusEnigma.Lib.Hashing
+namespace KybusEnigma.Hashing
 {
     internal static class HashingExtensions
     {

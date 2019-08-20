@@ -1,10 +1,10 @@
-﻿using KybusEnigma.Lib.Padding;
+﻿using KybusEnigma.Padding;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace KybusEnigma.Lib.Hashing.MessageDigest
+namespace KybusEnigma.Hashing.MessageDigest
 {
     public sealed class Md4 : MessageDigestBase
     {

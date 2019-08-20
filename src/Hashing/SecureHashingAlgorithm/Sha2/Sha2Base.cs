@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
+namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha2
 {
     public abstract class Sha2Base : Hasher
     {

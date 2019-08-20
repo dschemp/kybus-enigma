@@ -1,11 +1,11 @@
-﻿using KybusEnigma.Lib.Padding;
+﻿using KybusEnigma.Padding;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace KybusEnigma.Lib.Hashing.RipeMd
+namespace KybusEnigma.Hashing.RipeMd
 {
     public class RipeMd128 : RipeMdBase
     {

@@ -1,9 +1,9 @@
-﻿using KybusEnigma.Lib.Hashing;
+﻿using KybusEnigma.Hashing;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace KybusEnigma.Lib.Padding
+namespace KybusEnigma.Padding
 {
     public static class LengthPadding
     {

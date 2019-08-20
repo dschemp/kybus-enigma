@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace KybusEnigma.Lib.Hashing.MessageDigest
+namespace KybusEnigma.Hashing.MessageDigest
 {
     public sealed class Md6 : MessageDigestBase
     {

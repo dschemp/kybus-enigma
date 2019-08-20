@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace KybusEnigma.Lib.Encryption.Symmetric
+namespace KybusEnigma.Encryption.Symmetric
 {
     public sealed class Aes : EncryptionBase
     {

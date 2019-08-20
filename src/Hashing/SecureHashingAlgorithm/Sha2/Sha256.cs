@@ -1,9 +1,9 @@
-﻿using KybusEnigma.Lib.Padding;
+﻿using KybusEnigma.Padding;
 using System;
 using System.IO;
 using System.Linq;
 
-namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha2
+namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha2
 {
     public sealed class Sha256 : Sha2Base
     {

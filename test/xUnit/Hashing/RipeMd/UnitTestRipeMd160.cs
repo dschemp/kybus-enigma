@@ -1,5 +1,5 @@
-﻿using KybusEnigma.Lib.Hashing;
-using KybusEnigma.Lib.Hashing.RipeMd;
+﻿using KybusEnigma.Hashing;
+using KybusEnigma.Hashing.RipeMd;
 using KybusEnigma.xUnit.Helper;
 using System;
 using System.Collections.Generic;

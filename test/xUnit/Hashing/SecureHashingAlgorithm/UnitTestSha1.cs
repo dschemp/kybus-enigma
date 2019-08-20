@@ -1,5 +1,5 @@
-﻿using KybusEnigma.Lib.Hashing;
-using KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha1;
+﻿using KybusEnigma.Hashing;
+using KybusEnigma.Hashing.SecureHashingAlgorithm.Sha1;
 using KybusEnigma.xUnit.Helper;
 using System.IO;
 using Xunit;

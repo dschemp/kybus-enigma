@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace KybusEnigma.Lib.Hashing
+namespace KybusEnigma.Hashing
 {
     public abstract class Hasher
     {

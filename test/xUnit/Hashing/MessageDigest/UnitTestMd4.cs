@@ -1,4 +1,4 @@
-﻿using KybusEnigma.Lib.Hashing.MessageDigest;
+﻿using KybusEnigma.Hashing.MessageDigest;
 using KybusEnigma.xUnit.Helper;
 using System.IO;
 using Xunit;

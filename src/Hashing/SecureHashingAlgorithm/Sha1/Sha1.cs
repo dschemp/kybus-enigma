@@ -1,9 +1,9 @@
-﻿using KybusEnigma.Lib.Padding;
+﻿using KybusEnigma.Padding;
 using System;
 using System.IO;
 using System.Linq;
 
-namespace KybusEnigma.Lib.Hashing.SecureHashingAlgorithm.Sha1
+namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha1
 {
     public class Sha1 : Hasher
     {

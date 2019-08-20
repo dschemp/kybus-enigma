@@ -1,4 +1,4 @@
-﻿namespace KybusEnigma.Lib.Encryption.Asymmetric
+﻿namespace KybusEnigma.Encryption.Asymmetric
 {
     public sealed class AsymmetricKeyPair
     {

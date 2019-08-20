@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Numerics;
 
-namespace KybusEnigma.Lib.Encryption.Asymmetric
+namespace KybusEnigma.Encryption.Asymmetric
 {
     /// <summary>
     /// !!! UNTESTED !!!

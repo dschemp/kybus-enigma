@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KybusEnigma.Lib.Hashing.MessageDigest
+namespace KybusEnigma.Hashing.MessageDigest
 {
     public abstract class MessageDigestBase : Hasher
     {

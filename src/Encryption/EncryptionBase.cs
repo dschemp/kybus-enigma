@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace KybusEnigma.Lib.Encryption
+namespace KybusEnigma.Encryption
 {
     public abstract class EncryptionBase
     {

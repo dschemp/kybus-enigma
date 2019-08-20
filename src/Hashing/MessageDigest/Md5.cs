@@ -1,9 +1,9 @@
-﻿using KybusEnigma.Lib.Padding;
+﻿using KybusEnigma.Padding;
 using System;
 using System.IO;
 using System.Linq;
 
-namespace KybusEnigma.Lib.Hashing.MessageDigest
+namespace KybusEnigma.Hashing.MessageDigest
 {
     public sealed class Md5 : MessageDigestBase
     {

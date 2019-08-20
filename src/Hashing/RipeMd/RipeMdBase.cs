@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KybusEnigma.Lib.Hashing.RipeMd
+namespace KybusEnigma.Hashing.RipeMd
 {
     public abstract class RipeMdBase : Hasher
     {
