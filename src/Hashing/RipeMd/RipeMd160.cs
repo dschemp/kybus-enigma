@@ -17,7 +17,7 @@ namespace KybusEnigma.Hashing.RipeMd
         {
             var paddedInput = LengthPadding.PadToBlockSize(data, 64, 8, true);
             // Convert bytes to uint array for processing
-            var arr = paddedInput.BytesArr2UIntArrLittleEndian();
+            var arr = paddedInput.UInt8ArrToUInt32ArrLE();
 
             // Initial Hash values
             uint[] hash =
@@ -83,7 +83,7 @@ namespace KybusEnigma.Hashing.RipeMd
                 hash[0] = temp;
             }
 
-            return hash.UIntsArr2BytesArrLittleEndian();
+            return hash.UInt32ArrToUInt8ArrLE();
         }
 
         public override byte[] Hash(Stream stream)

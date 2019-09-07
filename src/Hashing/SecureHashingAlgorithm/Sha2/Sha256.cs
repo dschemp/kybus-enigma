@@ -15,7 +15,7 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha2
         {
             var paddedInput = LengthPadding.PadToBlockSize(data, 64, 8);
             // Convert input byte array to uint array for processing
-            var arr = paddedInput.BytesArr2UIntArr();
+            var arr = paddedInput.UInt8ArrToUInt32Arr();
 
             // Initial Values
             uint[] hash =
@@ -83,7 +83,7 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha2
                 hash[7] += h;
             }
 
-            return hash.UIntsArr2BytesArr();
+            return hash.UInt32ArrToUInt8Arr();
         }
 
         public override byte[] Hash(Stream stream)
@@ -129,7 +129,7 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha2
 
                 // --- Computation ---
 
-                var m = buffer.BytesArr2UIntArr(); // M_0 -> M_15, Current Block
+                var m = buffer.UInt8ArrToUInt32Arr(); // M_0 -> M_15, Current Block
 
                 // 1. Prepare the message schedule W:
                 Array.Copy(m, 0, w, 0, m.Length); // Copy first block into start of message schedule w
@@ -172,7 +172,7 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha2
                 hash[7] += h;
             }
 
-            return hash.UIntsArr2BytesArr();
+            return hash.UInt32ArrToUInt8Arr();
         }
     }
 }

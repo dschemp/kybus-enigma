@@ -15,7 +15,7 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha1
         {
             var paddedInput = LengthPadding.PadToBlockSize(data, 64, 8);
             // Convert input byte array to uint array for processing
-            var arr = paddedInput.BytesArr2UIntArr();
+            var arr = paddedInput.UInt8ArrToUInt32Arr();
 
             // Initial values
             uint[] hash =
@@ -70,7 +70,7 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha1
                 hash[4] += e;
             }
 
-            return hash.UIntsArr2BytesArr();
+            return hash.UInt32ArrToUInt8Arr();
         }
 
         public override byte[] Hash(Stream stream)
@@ -113,7 +113,7 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha1
 
                 // --- Computation ---
 
-                var m = buffer.BytesArr2UIntArr(); // M_0 -> M_15, Current Block
+                var m = buffer.UInt8ArrToUInt32Arr(); // M_0 -> M_15, Current Block
 
                 Array.Copy(m, 0, w, 0, m.Length); // Copy first block into start of message schedule w
                 foreach (var t in Enumerable.Range(16, 64))
@@ -145,7 +145,7 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha1
                 hash[4] += e;
             }
 
-            return hash.UIntsArr2BytesArr();
+            return hash.UInt32ArrToUInt8Arr();
         }
 
         #region Helpers, Functions and Constants

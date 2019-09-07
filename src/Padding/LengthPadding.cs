@@ -45,7 +45,7 @@ namespace KybusEnigma.Padding
         {
             // TODO: Use BigInteger
             var size = appendLengthInBits ? originalLength * 8 : originalLength; // originalLength = length in bytes, i.e. we have to multiply with 8 to convert it into bits
-            var lengthBytes = littleEndian ? size.Long2BytesArrLittleEndian() : size.Long2BytesArr();
+            var lengthBytes = littleEndian ? size.Int64ToUInt8ArrLE() : size.Int64LongToUInt8Arr();
 
             for (var i = 0; i < 8; i++)
                 buffer[buffer.Length - 8 + i] |= lengthBytes[i]; // Bits
