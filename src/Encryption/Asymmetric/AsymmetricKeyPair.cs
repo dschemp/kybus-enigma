@@ -10,5 +10,7 @@
             PublicKey = publicKey;
             PrivateKey = privateKey;
         }
+
+        public AsymmetricKeyPair() { }
     }
 }
