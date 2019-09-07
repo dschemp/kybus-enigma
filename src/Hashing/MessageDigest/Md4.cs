@@ -113,6 +113,9 @@ namespace KybusEnigma.Hashing.MessageDigest
 
         public override byte[] Hash(Stream stream)
         {
+            if (!stream.CanRead)
+                throw new IOException("Cannot read stream.");
+
             // Initial Hash values
             uint[] hash =
             {
