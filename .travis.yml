@@ -1,8 +1,0 @@
-language: csharp
-os: linux
-solution: kybus-enigma.sln
-dotnet: 3.1.101
-script:
-    - dotnet restore
-    - dotnet build -c release
-    - dotnet test -c release -f netcoreapp2.1
