@@ -1,0 +1,5 @@
+language: csharp
+solution: kybus-enigma.sln
+script:
+    - dotnet restore
+    - dotnet test
