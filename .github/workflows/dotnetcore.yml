@@ -22,3 +22,5 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Push latest package to GPR
+      run: sed -i 's/##TOKEN##/${{ secrets.PACKAGE_TOKEN }}/g' nuget.config && dotnet nuget push './src/Kybus.Enigma.1.0.0.nupkg' --source "github"
