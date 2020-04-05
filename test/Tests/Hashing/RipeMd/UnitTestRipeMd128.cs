@@ -1,13 +1,10 @@
-﻿using KybusEnigma.Hashing;
-using KybusEnigma.Hashing.RipeMd;
-using KybusEnigma.xUnit.Helper;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using Xunit;
+﻿using System.IO;
+using Kybus.Enigma.Hashing;
+using Kybus.Enigma.Hashing.RipeMd;
+using Kybus.Enigma.Tests.Helper;
+using NUnit.Framework;
 
-namespace KybusEnigma.xUnit.Hashing.RipeMd
+namespace Kybus.Enigma.Tests.Hashing.RipeMd
 {
     public class UnitTestRipeMd128
     {
@@ -63,7 +60,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
 
         #region RIPEMD-128
 
-        [Fact(DisplayName = "RIPEMD-128: Empty String")]
+        [Test(Description = "RIPEMD-128: Empty String")]
         public void RipeMd128_EmptyString()
         {
             var (data, expected) = TestVectors[0];
@@ -72,7 +69,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128: \"a\"")]
+        [Test(Description = "RIPEMD-128: \"a\"")]
         public void RipeMd128_a()
         {
             var (data, expected) = TestVectors[1];
@@ -81,7 +78,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128: \"abc\"")]
+        [Test(Description = "RIPEMD-128: \"abc\"")]
         public void RipeMd128_abc()
         {
             var (data, expected) = TestVectors[2];
@@ -90,7 +87,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128: \"message digest\"")]
+        [Test(Description = "RIPEMD-128: \"message digest\"")]
         public void RipeMd128_messagedigest()
         {
             var (data, expected) = TestVectors[3];
@@ -99,7 +96,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128: \"abcdefghijklmnopqrstuvwxyz\"")]
+        [Test(Description = "RIPEMD-128: \"abcdefghijklmnopqrstuvwxyz\"")]
         public void RipeMd128_a2z()
         {
             var (data, expected) = TestVectors[4];
@@ -108,7 +105,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128: \"abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq\"")]
+        [Test(Description = "RIPEMD-128: \"abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq\"")]
         public void RipeMd128_RepeatingLetters()
         {
             var (data, expected) = TestVectors[5];
@@ -117,7 +114,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128: \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\"")]
+        [Test(Description = "RIPEMD-128: \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\"")]
         public void RipeMd128_a2zA2Z029()
         {
             var (data, expected) = TestVectors[6];
@@ -126,7 +123,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128: \"12345678901234567890123456789012345678901234567890123456789012345678901234567890\"")]
+        [Test(Description = "RIPEMD-128: \"12345678901234567890123456789012345678901234567890123456789012345678901234567890\"")]
         public void RipeMd128_eightTimesFrom0to9()
         {
             var (data, expected) = TestVectors[7];
@@ -135,7 +132,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128: One Million a's")]
+        [Test(Description = "RIPEMD-128: One Million a's")]
         public void RipeMd128_OneMillionSmallAs()
         {
             var (data, expected) = TestVectors[8];
@@ -148,7 +145,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
 
         #region RIPEMD-128-Stream
 
-        [Fact(DisplayName = "RIPEMD-128-Stream: Empty String")]
+        [Test(Description = "RIPEMD-128-Stream: Empty String")]
         public void RipeMd128Stream_EmptyString()
         {
             var (data, expected) = TestVectorsStream[0];
@@ -157,7 +154,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128-Stream: \"a\"")]
+        [Test(Description = "RIPEMD-128-Stream: \"a\"")]
         public void RipeMd128Stream_a()
         {
             var (data, expected) = TestVectorsStream[1];
@@ -166,7 +163,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128-Stream: \"abc\"")]
+        [Test(Description = "RIPEMD-128-Stream: \"abc\"")]
         public void RipeMd128Stream_abc()
         {
             var (data, expected) = TestVectorsStream[2];
@@ -175,7 +172,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128-Stream: \"message digest\"")]
+        [Test(Description = "RIPEMD-128-Stream: \"message digest\"")]
         public void RipeMd128Stream_messagedigest()
         {
             var (data, expected) = TestVectorsStream[3];
@@ -184,7 +181,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128-Stream: \"abcdefghijklmnopqrstuvwxyz\"")]
+        [Test(Description = "RIPEMD-128-Stream: \"abcdefghijklmnopqrstuvwxyz\"")]
         public void RipeMd128Stream_a2z()
         {
             var (data, expected) = TestVectorsStream[4];
@@ -193,7 +190,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128-Stream: \"abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq\"")]
+        [Test(Description = "RIPEMD-128-Stream: \"abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq\"")]
         public void RipeMd128Stream_RepeatingLetters()
         {
             var (data, expected) = TestVectorsStream[5];
@@ -202,7 +199,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128-Stream: \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\"")]
+        [Test(Description = "RIPEMD-128-Stream: \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\"")]
         public void RipeMd128Stream_a2zA2Z029()
         {
             var (data, expected) = TestVectorsStream[6];
@@ -211,7 +208,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128-Stream: \"12345678901234567890123456789012345678901234567890123456789012345678901234567890\"")]
+        [Test(Description = "RIPEMD-128-Stream: \"12345678901234567890123456789012345678901234567890123456789012345678901234567890\"")]
         public void RipeMd128Stream_eightTimesFrom0to9()
         {
             var (data, expected) = TestVectorsStream[7];
@@ -220,7 +217,7 @@ namespace KybusEnigma.xUnit.Hashing.RipeMd
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "RIPEMD-128-Stream: One Million a's")]
+        [Test(Description = "RIPEMD-128-Stream: One Million a's")]
         public void RipeMd128Stream_OneMillionSmallAs()
         {
             var (data, expected) = TestVectorsStream[8];

@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace KybusEnigma.xUnit.Helper
+namespace Kybus.Enigma.Tests.Helper
 {
     public class Converter
     {

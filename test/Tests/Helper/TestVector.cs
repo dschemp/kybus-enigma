@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KybusEnigma.xUnit.Helper
+namespace Kybus.Enigma.Tests.Helper
 {
     public class TestVector<TInputData, TOutputData, TInputExpected, TOutputExpected>
     {

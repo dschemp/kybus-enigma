@@ -1,9 +1,9 @@
-﻿using KybusEnigma.Hashing.MessageDigest;
-using KybusEnigma.xUnit.Helper;
-using System.IO;
-using Xunit;
+﻿using System.IO;
+using Kybus.Enigma.Hashing.MessageDigest;
+using Kybus.Enigma.Tests.Helper;
+using NUnit.Framework;
 
-namespace KybusEnigma.xUnit.Hashing.MessageDigest
+namespace Kybus.Enigma.Tests.Hashing.MessageDigest
 {
     public class UnitTestMd4
     {
@@ -51,7 +51,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
 
         #region MD4
 
-        [Fact(DisplayName = "MD4: Empty String")]
+        [Test(Description = "MD4: Empty String")]
         public void Md4_EmptyString()
         {
             var (data, expected) = TestVectors["Empty String"];
@@ -60,7 +60,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4: \"a\"")]
+        [Test(Description = "MD4: \"a\"")]
         public void Md4_SingleSmallA()
         {
             var (data, expected) = TestVectors["a"];
@@ -69,7 +69,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4: \"abc\"")]
+        [Test(Description = "MD4: \"abc\"")]
         public void Md4_abc()
         {
             var (data, expected) = TestVectors["abc"];
@@ -78,7 +78,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4: \"message digest\"")]
+        [Test(Description = "MD4: \"message digest\"")]
         public void Md4_MessageDigest()
         {
             var (data, expected) = TestVectors["message digest"];
@@ -87,7 +87,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4: \"a-z\"")]
+        [Test(Description = "MD4: \"a-z\"")]
         public void Md4_a2z()
         {
             var (data, expected) = TestVectors["a-z"];
@@ -96,7 +96,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4: \"A-Za-z0-9\"")]
+        [Test(Description = "MD4: \"A-Za-z0-9\"")]
         public void Md4_A2Za2z029()
         {
             var (data, expected) = TestVectors["A-Za-z0-9"];
@@ -105,7 +105,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4: 8 times \"1234567890\"")]
+        [Test(Description = "MD4: 8 times \"1234567890\"")]
         public void Md4_LargeNumber()
         {
             var (data, expected) = TestVectors["LargeNumber"];
@@ -118,7 +118,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
 
         #region MD4-Stream
 
-        [Fact(DisplayName = "MD4-Stream: Empty String")]
+        [Test(Description = "MD4-Stream: Empty String")]
         public void Md4Stream_EmptyString()
         {
             var (data, expected) = TestVectorsStream["Empty String"];
@@ -127,7 +127,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4-Stream: \"a\"")]
+        [Test(Description = "MD4-Stream: \"a\"")]
         public void Md4Stream_SingleSmallA()
         {
             var (data, expected) = TestVectorsStream["a"];
@@ -136,7 +136,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4-Stream: \"abc\"")]
+        [Test(Description = "MD4-Stream: \"abc\"")]
         public void Md4Stream_abc()
         {
             var (data, expected) = TestVectorsStream["abc"];
@@ -145,7 +145,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4-Stream: \"message digest\"")]
+        [Test(Description = "MD4-Stream: \"message digest\"")]
         public void Md4Stream_MessageDigest()
         {
             var (data, expected) = TestVectorsStream["message digest"];
@@ -154,7 +154,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4-Stream: \"a-z\"")]
+        [Test(Description = "MD4-Stream: \"a-z\"")]
         public void Md4Stream_a2z()
         {
             var (data, expected) = TestVectorsStream["a-z"];
@@ -163,7 +163,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4-Stream: \"A-Za-z0-9\"")]
+        [Test(Description = "MD4-Stream: \"A-Za-z0-9\"")]
         public void Md4Stream_A2Za2z029()
         {
             var (data, expected) = TestVectorsStream["A-Za-z0-9"];
@@ -172,7 +172,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD4-Stream: 8 times \"1234567890\"")]
+        [Test(Description = "MD4-Stream: 8 times \"1234567890\"")]
         public void Md4Stream_LargeNumber()
         {
             var (data, expected) = TestVectorsStream["LargeNumber"];

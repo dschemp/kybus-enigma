@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KybusEnigma.Benchmark
+namespace Kybus.Enigma.Benchmark
 {
     class Program
     {

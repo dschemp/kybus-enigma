@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha2
+﻿namespace Kybus.Enigma.Hashing.SecureHashingAlgorithm.Sha2
 {
     public abstract class Sha2Base : Hasher
     {
@@ -14,11 +11,15 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha2
         #region Sha256 Functions
 
         protected uint Ch(uint x, uint y, uint z) => (x & y) ^ ((~x) & z);
+
         protected uint Maj(uint x, uint y, uint z) => (x & y) ^ (x & z) ^ (y & z);
 
         protected uint BigSigma0(uint x) => x.RotR(2) ^ x.RotR(13) ^ x.RotR(22);
+
         protected uint BigSigma1(uint x) => x.RotR(6) ^ x.RotR(11) ^ x.RotR(25);
+
         protected uint SmallSigma0(uint x) => x.RotR(7) ^ x.RotR(18) ^ x.ShiftR(3);
+
         protected uint SmallSigma1(uint x) => x.RotR(17) ^ x.RotR(19) ^ x.ShiftR(10);
 
         #endregion
@@ -26,18 +27,22 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha2
         #region Sha512 Functions
 
         protected ulong Ch(ulong x, ulong y, ulong z) => (x & y) ^ ((~x) & z);
+
         protected ulong Maj(ulong x, ulong y, ulong z) => (x & y) ^ (x & z) ^ (y & z);
 
         protected ulong BigSigma0(ulong x) => x.RotR(28) ^ x.RotR(34) ^ x.RotR(39);
+
         protected ulong BigSigma1(ulong x) => x.RotR(14) ^ x.RotR(18) ^ x.RotR(41);
+
         protected ulong SmallSigma0(ulong x) => x.RotR(1) ^ x.RotR(8) ^ x.ShiftR(7);
+
         protected ulong SmallSigma1(ulong x) => x.RotR(19) ^ x.RotR(61) ^ x.ShiftR(6);
 
         #endregion
 
         #region Constants
 
-        protected readonly uint[] K_256 =
+        protected readonly uint[] _k256 =
         {
             0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
             0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
@@ -57,7 +62,7 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha2
             0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
         };
 
-        protected readonly ulong[] K_512 =
+        protected readonly ulong[] _k512 =
         {
             0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe9b5dba58189dbbc,
             0x3956c25bf348b538, 0x59f111f1b605d019, 0x923f82a4af194f9b, 0xab1c5ed5da6d8118,

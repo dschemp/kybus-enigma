@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>KybusEnigma</RootNamespace>
-    <AssemblyName>KybusEnigma</AssemblyName>
+    <RootNamespace>Kybus.Enigma</RootNamespace>
+    <AssemblyName>Kybus.Enigma</AssemblyName>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -14,6 +14,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/dschemp/kybus-enigma/master/docs/icon.png</PackageIconUrl>
     <SignAssembly>false</SignAssembly>
     <Description>Small little crypto library</Description>
+    <CodeAnalysisRuleSet>..\Code_Analysis.ruleset</CodeAnalysisRuleSet>
     <Copyright />
   </PropertyGroup>
 
@@ -22,6 +23,17 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Roslynator.Analyzers" Version="2.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

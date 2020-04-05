@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Rule Set Kybus.Enigma" Description=" " ToolsVersion="16.0">
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.Analyzers" RuleNamespace="Microsoft.CodeAnalysis.Analyzers">
+    <Rule Id="RS1001" Action="None" />
+    <Rule Id="RS1004" Action="None" />
+    <Rule Id="RS1009" Action="None" />
+    <Rule Id="RS1010" Action="None" />
+    <Rule Id="RS1011" Action="None" />
+    <Rule Id="RS1016" Action="None" />
+    <Rule Id="RS1017" Action="None" />
+    <Rule Id="RS1018" Action="None" />
+    <Rule Id="RS1019" Action="None" />
+    <Rule Id="RS1021" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
+    <Rule Id="IDE0052" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="Roslynator.CSharp.Analyzers" RuleNamespace="Roslynator.CSharp.Analyzers">
+    <Rule Id="RCS1001" Action="None" />
+    <Rule Id="RCS1003" Action="Warning" />
+    <Rule Id="RCS1005" Action="Info" />
+    <Rule Id="RCS1006" Action="Warning" />
+    <Rule Id="RCS1007" Action="Warning" />
+    <Rule Id="RCS1008" Action="Warning" />
+    <Rule Id="RCS1009" Action="Warning" />
+    <Rule Id="RCS1012" Action="Warning" />
+    <Rule Id="RCS1014" Action="Warning" />
+    <Rule Id="RCS1028" Action="Warning" />
+    <Rule Id="RCS1035" Action="Warning" />
+    <Rule Id="RCS1046" Action="Warning" />
+    <Rule Id="RCS1052" Action="Warning" />
+    <Rule Id="RCS1079" Action="None" />
+    <Rule Id="RCS1111" Action="Warning" />
+    <Rule Id="RCS1123" Action="Warning" />
+    <Rule Id="RCS1126" Action="Warning" />
+    <Rule Id="RCS1174" Action="Warning" />
+    <Rule Id="RCS1184" Action="Warning" />
+    <Rule Id="RCS1185" Action="Warning" />
+    <Rule Id="RCS1213" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA0001" Action="None" />
+    <Rule Id="SA1004" Action="None" />
+    <Rule Id="SA1101" Action="None" />
+    <Rule Id="SA1124" Action="None" />
+    <Rule Id="SA1200" Action="None" />
+    <Rule Id="SA1201" Action="None" />
+    <Rule Id="SA1204" Action="None" />
+    <Rule Id="SA1305" Action="Warning" />
+    <Rule Id="SA1306" Action="None" />
+    <Rule Id="SA1309" Action="None" />
+    <Rule Id="SA1310" Action="None" />
+    <Rule Id="SA1312" Action="None" />
+    <Rule Id="SA1401" Action="None" />
+    <Rule Id="SA1412" Action="Warning" />
+    <Rule Id="SA1413" Action="None" />
+    <Rule Id="SA1506" Action="None" />
+    <Rule Id="SA1514" Action="None" />
+    <Rule Id="SA1600" Action="None" />
+    <Rule Id="SA1601" Action="None" />
+    <Rule Id="SA1602" Action="None" />
+    <Rule Id="SA1604" Action="None" />
+    <Rule Id="SA1605" Action="None" />
+    <Rule Id="SA1606" Action="None" />
+    <Rule Id="SA1607" Action="None" />
+    <Rule Id="SA1608" Action="None" />
+    <Rule Id="SA1610" Action="None" />
+    <Rule Id="SA1611" Action="None" />
+    <Rule Id="SA1612" Action="None" />
+    <Rule Id="SA1613" Action="None" />
+    <Rule Id="SA1614" Action="None" />
+    <Rule Id="SA1615" Action="None" />
+    <Rule Id="SA1616" Action="None" />
+    <Rule Id="SA1617" Action="None" />
+    <Rule Id="SA1618" Action="None" />
+    <Rule Id="SA1619" Action="None" />
+    <Rule Id="SA1620" Action="None" />
+    <Rule Id="SA1621" Action="None" />
+    <Rule Id="SA1622" Action="None" />
+    <Rule Id="SA1623" Action="None" />
+    <Rule Id="SA1624" Action="None" />
+    <Rule Id="SA1625" Action="None" />
+    <Rule Id="SA1626" Action="None" />
+    <Rule Id="SA1627" Action="None" />
+    <Rule Id="SA1629" Action="None" />
+    <Rule Id="SA1633" Action="None" />
+    <Rule Id="SA1634" Action="None" />
+    <Rule Id="SA1635" Action="None" />
+    <Rule Id="SA1636" Action="None" />
+    <Rule Id="SA1637" Action="None" />
+    <Rule Id="SA1638" Action="None" />
+    <Rule Id="SA1640" Action="None" />
+    <Rule Id="SA1641" Action="None" />
+    <Rule Id="SA1642" Action="None" />
+    <Rule Id="SA1643" Action="None" />
+    <Rule Id="SA1648" Action="None" />
+    <Rule Id="SX1101" Action="Warning" />
+  </Rules>
+</RuleSet>

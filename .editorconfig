@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# RCS1239: Use 'for' statement instead of 'while' statement.
+dotnet_diagnostic.RCS1239.severity = warning

@@ -1,8 +1,9 @@
-﻿namespace KybusEnigma.Encryption.Asymmetric
+﻿namespace Kybus.Enigma.Encryption.Asymmetric
 {
     public sealed class AsymmetricKeyPair
     {
         public byte[] PublicKey { get; set; }
+
         public byte[] PrivateKey { get; set; }
 
         public AsymmetricKeyPair(byte[] publicKey, byte[] privateKey)
@@ -11,6 +12,8 @@
             PrivateKey = privateKey;
         }
 
-        public AsymmetricKeyPair() { }
+        public AsymmetricKeyPair()
+        {
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Numerics;
 
-namespace KybusEnigma.Encryption.Asymmetric
+namespace Kybus.Enigma.Encryption.Asymmetric
 {
     /// <summary>
     /// !!! UNTESTED !!!
@@ -9,17 +9,23 @@ namespace KybusEnigma.Encryption.Asymmetric
     public class Rsa : EncryptionBase
     {
         public byte[] RsaModulus { get; set; }
+
         public AsymmetricKeyPair KeyPair { get; set; }
 
         public Rsa(byte[] rsaModulus, byte[] publicKey, byte[] privateKey)
         {
-            this.RsaModulus = rsaModulus;
-            this.KeyPair = new AsymmetricKeyPair(publicKey, privateKey);
+            RsaModulus = rsaModulus;
+            KeyPair = new AsymmetricKeyPair(publicKey, privateKey);
         }
 
-        public Rsa(byte[] rsaModulus, AsymmetricKeyPair keyPair) : this(rsaModulus, keyPair.PublicKey, keyPair.PrivateKey) { }
+        public Rsa(byte[] rsaModulus, AsymmetricKeyPair keyPair)
+            : this(rsaModulus, keyPair.PublicKey, keyPair.PrivateKey)
+        {
+        }
 
-        public Rsa() { }
+        public Rsa()
+        {
+        }
 
         public static Rsa Create() => new Rsa();
 

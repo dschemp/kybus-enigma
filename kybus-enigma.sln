@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KybusEnigma.xUnit", "test\xUnit\KybusEnigma.xUnit.csproj", "{03F6A49D-4EE4-4F2F-A521-0936C20BFCA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kybus.Enigma.ST", "src\Kybus.Enigma.ST.csproj", "{AA826659-1697-4C6D-B7E2-BABFC33AE702}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KybusEnigma", "src\KybusEnigma.csproj", "{AA826659-1697-4C6D-B7E2-BABFC33AE702}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kybus.Enigma.ST.Benchmark", "test\Benchmark\Kybus.Enigma.ST.Benchmark.csproj", "{51E94823-82B7-49AC-87C7-B748E0B667DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KybusEnigma.Benchmark", "test\Benchmark\KybusEnigma.Benchmark.csproj", "{51E94823-82B7-49AC-87C7-B748E0B667DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kybus.Enigma.ST.Tests", "test\Tests\Kybus.Enigma.ST.Tests.csproj", "{E26D6248-41B2-4B08-8ADD-4F699B3C4ADC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BCE64DD7-AB72-441C-BC05-E3BC7DF46F3D}"
+	ProjectSection(SolutionItems) = preProject
+		Code_Analysis.ruleset = Code_Analysis.ruleset
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +20,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{03F6A49D-4EE4-4F2F-A521-0936C20BFCA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03F6A49D-4EE4-4F2F-A521-0936C20BFCA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03F6A49D-4EE4-4F2F-A521-0936C20BFCA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03F6A49D-4EE4-4F2F-A521-0936C20BFCA7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA826659-1697-4C6D-B7E2-BABFC33AE702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA826659-1697-4C6D-B7E2-BABFC33AE702}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA826659-1697-4C6D-B7E2-BABFC33AE702}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +28,10 @@ Global
 		{51E94823-82B7-49AC-87C7-B748E0B667DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51E94823-82B7-49AC-87C7-B748E0B667DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51E94823-82B7-49AC-87C7-B748E0B667DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E26D6248-41B2-4B08-8ADD-4F699B3C4ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E26D6248-41B2-4B08-8ADD-4F699B3C4ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E26D6248-41B2-4B08-8ADD-4F699B3C4ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E26D6248-41B2-4B08-8ADD-4F699B3C4ADC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

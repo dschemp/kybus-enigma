@@ -1,9 +1,9 @@
-﻿using KybusEnigma.Hashing.MessageDigest;
-using KybusEnigma.xUnit.Helper;
-using System.IO;
-using Xunit;
+﻿using System.IO;
+using Kybus.Enigma.Hashing.MessageDigest;
+using Kybus.Enigma.Tests.Helper;
+using NUnit.Framework;
 
-namespace KybusEnigma.xUnit.Hashing.MessageDigest
+namespace Kybus.Enigma.Tests.Hashing.MessageDigest
 {
     public class UnitTestMd5
     {
@@ -53,7 +53,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
 
         #region MD5
 
-        [Fact(DisplayName = "MD5: \"The quick brown fox jumps over the lazy dog\"")]
+        [Test(Description = "MD5: \"The quick brown fox jumps over the lazy dog\"")]
         public void Md5_QuickBrownFox()
         {
             var (data, expected) = TestVectors["Quick Brown Fox"];
@@ -62,7 +62,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5: Empty String")]
+        [Test(Description = "MD5: Empty String")]
         public void Md5_EmptyString()
         {
             var (data, expected) = TestVectors["Empty String"];
@@ -71,7 +71,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5: \"a\"")]
+        [Test(Description = "MD5: \"a\"")]
         public void Md5_SingleSmallA()
         {
             var (data, expected) = TestVectors["a"];
@@ -80,7 +80,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5: \"abc\"")]
+        [Test(Description = "MD5: \"abc\"")]
         public void Md5_abc()
         {
             var (data, expected) = TestVectors["abc"];
@@ -89,7 +89,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5: \"message digest\"")]
+        [Test(Description = "MD5: \"message digest\"")]
         public void Md5_MessageDigest()
         {
             var (data, expected) = TestVectors["message digest"];
@@ -98,7 +98,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5: \"a-z\"")]
+        [Test(Description = "MD5: \"a-z\"")]
         public void Md5_a2z()
         {
             var (data, expected) = TestVectors["a-z"];
@@ -107,7 +107,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5: \"A-Za-z0-9\"")]
+        [Test(Description = "MD5: \"A-Za-z0-9\"")]
         public void Md5_A2Za2z029()
         {
             var (data, expected) = TestVectors["A-Za-z0-9"];
@@ -116,7 +116,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5: 8 times \"1234567890\"")]
+        [Test(Description = "MD5: 8 times \"1234567890\"")]
         public void Md5_LargeNumber()
         {
             var (data, expected) = TestVectors["LargeNumber"];
@@ -129,7 +129,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
 
         #region MD5-Stream
 
-        [Fact(DisplayName = "MD5-Stream: \"The quick brown fox jumps over the lazy dog\"")]
+        [Test(Description = "MD5-Stream: \"The quick brown fox jumps over the lazy dog\"")]
         public void Md5Stream_QuickBrownFox()
         {
             var (data, expected) = TestVectorsStream["Quick Brown Fox"];
@@ -138,7 +138,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5-Stream: Empty String")]
+        [Test(Description = "MD5-Stream: Empty String")]
         public void Md5Stream_EmptyString()
         {
             var (data, expected) = TestVectorsStream["Empty String"];
@@ -147,7 +147,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5-Stream: \"a\"")]
+        [Test(Description = "MD5-Stream: \"a\"")]
         public void Md5Stream_SingleSmallA()
         {
             var (data, expected) = TestVectorsStream["a"];
@@ -156,7 +156,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5-Stream: \"abc\"")]
+        [Test(Description = "MD5-Stream: \"abc\"")]
         public void Md5Stream_abc()
         {
             var (data, expected) = TestVectorsStream["abc"];
@@ -165,7 +165,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5-Stream: \"message digest\"")]
+        [Test(Description = "MD5-Stream: \"message digest\"")]
         public void Md5Stream_MessageDigest()
         {
             var (data, expected) = TestVectorsStream["message digest"];
@@ -174,7 +174,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5-Stream: \"a-z\"")]
+        [Test(Description = "MD5-Stream: \"a-z\"")]
         public void Md5Stream_a2z()
         {
             var (data, expected) = TestVectorsStream["a-z"];
@@ -183,7 +183,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5-Stream: \"A-Za-z0-9\"")]
+        [Test(Description = "MD5-Stream: \"A-Za-z0-9\"")]
         public void Md5Stream_A2Za2z029()
         {
             var (data, expected) = TestVectorsStream["A-Za-z0-9"];
@@ -192,7 +192,7 @@ namespace KybusEnigma.xUnit.Hashing.MessageDigest
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "MD5-Stream: 8 times \"1234567890\"")]
+        [Test(Description = "MD5-Stream: 8 times \"1234567890\"")]
         public void Md5Stream_LargeNumber()
         {
             var (data, expected) = TestVectorsStream["LargeNumber"];

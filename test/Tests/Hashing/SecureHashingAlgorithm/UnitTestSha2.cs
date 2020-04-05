@@ -1,10 +1,10 @@
-﻿using KybusEnigma.Hashing;
-using KybusEnigma.Hashing.SecureHashingAlgorithm.Sha2;
-using KybusEnigma.xUnit.Helper;
-using System.IO;
-using Xunit;
+﻿using System.IO;
+using Kybus.Enigma.Hashing;
+using Kybus.Enigma.Hashing.SecureHashingAlgorithm.Sha2;
+using Kybus.Enigma.Tests.Helper;
+using NUnit.Framework;
 
-namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
+namespace Kybus.Enigma.Tests.Hashing.SecureHashingAlgorithm
 {
     public class UnitTestSha2
     {
@@ -90,7 +90,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #region SHA224
 
-        [Fact(DisplayName = "SHA-224: \"abc\"")]
+        [Test(Description = "SHA-224: \"abc\"")]
         public void Sha224_abc()
         {
             var (data, expected) = TestVectors["Sha224 abc"];
@@ -99,7 +99,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-224: Empty String")]
+        [Test(Description = "SHA-224: Empty String")]
         public void Sha224_EmptyString()
         {
             var (data, expected) = TestVectors["Sha224 Empty String"];
@@ -108,7 +108,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-224: 448 Bits")]
+        [Test(Description = "SHA-224: 448 Bits")]
         public void Sha224_448Bits()
         {
             var (data, expected) = TestVectors["Sha224 448 Bits"];
@@ -117,7 +117,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-224: 896 Bits")]
+        [Test(Description = "SHA-224: 896 Bits")]
         public void Sha224_896Bits()
         {
             var (data, expected) = TestVectors["Sha224 896 Bits"];
@@ -126,7 +126,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-224: One Million times 'a'")]
+        [Test(Description = "SHA-224: One Million times 'a'")]
         public void Sha224_OneMillionSmallAs()
         {
             var (data, expected) = TestVectors["Sha224 One Million As"];
@@ -139,7 +139,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #region SHA256
 
-        [Fact(DisplayName = "SHA-256: \"abc\"")]
+        [Test(Description = "SHA-256: \"abc\"")]
         public void Sha256_abc()
         {
             var (data, expected) = TestVectors["Sha256 abc"];
@@ -148,7 +148,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-256: Empty String")]
+        [Test(Description = "SHA-256: Empty String")]
         public void Sha256_EmptyString()
         {
             var (data, expected) = TestVectors["Sha256 Empty String"];
@@ -157,7 +157,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-256: 448 Bits")]
+        [Test(Description = "SHA-256: 448 Bits")]
         public void Sha256_448Bits()
         {
             var (data, expected) = TestVectors["Sha256 448 Bits"];
@@ -166,7 +166,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-256: 896 Bits")]
+        [Test(Description = "SHA-256: 896 Bits")]
         public void Sha256_896Bits()
         {
             var (data, expected) = TestVectors["Sha256 896 Bits"];
@@ -175,7 +175,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-256: One Million times 'a'")]
+        [Test(Description = "SHA-256: One Million times 'a'")]
         public void Sha256_OneMillionSmallAs()
         {
             var (data, expected) = TestVectors["Sha256 One Million As"];
@@ -188,7 +188,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #region SHA384
 
-        [Fact(DisplayName = "SHA-384: \"abc\"")]
+        [Test(Description = "SHA-384: \"abc\"")]
         public void Sha384_abc()
         {
             var (data, expected) = TestVectors["Sha384 abc"];
@@ -197,7 +197,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-384: Empty String")]
+        [Test(Description = "SHA-384: Empty String")]
         public void Sha384_EmptyString()
         {
             var (data, expected) = TestVectors["Sha384 Empty String"];
@@ -206,7 +206,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-384: 448 Bits")]
+        [Test(Description = "SHA-384: 448 Bits")]
         public void Sha384_448Bits()
         {
             var (data, expected) = TestVectors["Sha384 448 Bits"];
@@ -215,7 +215,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-384: 896 Bits")]
+        [Test(Description = "SHA-384: 896 Bits")]
         public void Sha384_896Bits()
         {
             var (data, expected) = TestVectors["Sha384 896 Bits"];
@@ -224,7 +224,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-384: One Million times 'a'")]
+        [Test(Description = "SHA-384: One Million times 'a'")]
         public void Sha384_OneMillionSmallAs()
         {
             var (data, expected) = TestVectors["Sha384 One Million As"];
@@ -237,7 +237,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #region SHA512
 
-        [Fact(DisplayName = "SHA-512: \"abc\"")]
+        [Test(Description = "SHA-512: \"abc\"")]
         public void Sha512_abc()
         {
             var (data, expected) = TestVectors["Sha512 abc"];
@@ -246,7 +246,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-512: Empty String")]
+        [Test(Description = "SHA-512: Empty String")]
         public void Sha512_EmptyString()
         {
             var (data, expected) = TestVectors["Sha512 Empty String"];
@@ -255,7 +255,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-512: 448 Bits")]
+        [Test(Description = "SHA-512: 448 Bits")]
         public void Sha512_448Bits()
         {
             var (data, expected) = TestVectors["Sha512 448 Bits"];
@@ -264,7 +264,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-512: 896 Bits")]
+        [Test(Description = "SHA-512: 896 Bits")]
         public void Sha512_896Bits()
         {
             var (data, expected) = TestVectors["Sha512 896 Bits"];
@@ -273,7 +273,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-512: One Million times 'a'")]
+        [Test(Description = "SHA-512: One Million times 'a'")]
         public void Sha512_OneMillionSmallAs()
         {
             var (data, expected) = TestVectors["Sha512 One Million As"];
@@ -286,7 +286,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #region SHA224-Stream
 
-        [Fact(DisplayName = "SHA-224-Stream: \"abc\"")]
+        [Test(Description = "SHA-224-Stream: \"abc\"")]
         public void Sha224Stream_abc()
         {
             var (data, expected) = TestVectorsStream["Sha224-Stream abc"];
@@ -295,7 +295,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-224-Stream: Empty String")]
+        [Test(Description = "SHA-224-Stream: Empty String")]
         public void Sha224Stream_EmptyString()
         {
             var (data, expected) = TestVectorsStream["Sha224-Stream Empty String"];
@@ -304,7 +304,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-224-Stream: 448 Bits")]
+        [Test(Description = "SHA-224-Stream: 448 Bits")]
         public void Sha224Stream_448Bits()
         {
             var (data, expected) = TestVectorsStream["Sha224-Stream 448 Bits"];
@@ -313,7 +313,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-224-Stream: 896 Bits")]
+        [Test(Description = "SHA-224-Stream: 896 Bits")]
         public void Sha224Stream_896Bits()
         {
             var (data, expected) = TestVectorsStream["Sha224-Stream 896 Bits"];
@@ -322,7 +322,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-224-Stream: One Million times 'a'")]
+        [Test(Description = "SHA-224-Stream: One Million times 'a'")]
         public void Sha224Stream_OneMillionSmallAs()
         {
             var (data, expected) = TestVectorsStream["Sha224-Stream One Million As"];
@@ -335,7 +335,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #region SHA256-Stream
 
-        [Fact(DisplayName = "SHA-256-Stream: \"abc\"")]
+        [Test(Description = "SHA-256-Stream: \"abc\"")]
         public void Sha256Stream_abc()
         {
             var (data, expected) = TestVectorsStream["Sha256-Stream abc"];
@@ -344,7 +344,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-256-Stream: Empty String")]
+        [Test(Description = "SHA-256-Stream: Empty String")]
         public void Sha256Stream_EmptyString()
         {
             var (data, expected) = TestVectorsStream["Sha256-Stream Empty String"];
@@ -353,7 +353,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-256-Stream: 448 Bits")]
+        [Test(Description = "SHA-256-Stream: 448 Bits")]
         public void Sha256Stream_448Bits()
         {
             var (data, expected) = TestVectorsStream["Sha256-Stream 448 Bits"];
@@ -362,7 +362,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-256-Stream: 896 Bits")]
+        [Test(Description = "SHA-256-Stream: 896 Bits")]
         public void Sha256Stream_896Bits()
         {
             var (data, expected) = TestVectorsStream["Sha256-Stream 896 Bits"];
@@ -371,7 +371,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-256-Stream: One Million times 'a'")]
+        [Test(Description = "SHA-256-Stream: One Million times 'a'")]
         public void Sha256Stream_OneMillionSmallAs()
         {
             var (data, expected) = TestVectorsStream["Sha256-Stream One Million As"];
@@ -384,7 +384,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #region SHA384-Stream
 
-        [Fact(DisplayName = "SHA-384-Stream: \"abc\"")]
+        [Test(Description = "SHA-384-Stream: \"abc\"")]
         public void Sha384Stream_abc()
         {
             var (data, expected) = TestVectorsStream["Sha384-Stream abc"];
@@ -393,7 +393,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-384-Stream: Empty String")]
+        [Test(Description = "SHA-384-Stream: Empty String")]
         public void Sha384Stream_EmptyString()
         {
             var (data, expected) = TestVectorsStream["Sha384-Stream Empty String"];
@@ -402,7 +402,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-384-Stream: 448 Bits")]
+        [Test(Description = "SHA-384-Stream: 448 Bits")]
         public void Sha384Stream_448Bits()
         {
             var (data, expected) = TestVectorsStream["Sha384-Stream 448 Bits"];
@@ -411,7 +411,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-384-Stream: 896 Bits")]
+        [Test(Description = "SHA-384-Stream: 896 Bits")]
         public void Sha384Stream_896Bits()
         {
             var (data, expected) = TestVectorsStream["Sha384-Stream 896 Bits"];
@@ -420,7 +420,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-384-Stream: One Million times 'a'")]
+        [Test(Description = "SHA-384-Stream: One Million times 'a'")]
         public void Sha384Stream_OneMillionSmallAs()
         {
             var (data, expected) = TestVectorsStream["Sha384-Stream One Million As"];
@@ -433,7 +433,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
 
         #region SHA512-Stream
 
-        [Fact(DisplayName = "SHA-512-Stream: \"abc\"")]
+        [Test(Description = "SHA-512-Stream: \"abc\"")]
         public void Sha512Stream_abc()
         {
             var (data, expected) = TestVectorsStream["Sha512-Stream abc"];
@@ -442,7 +442,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-512-Stream: Empty String")]
+        [Test(Description = "SHA-512-Stream: Empty String")]
         public void Sha512Stream_EmptyString()
         {
             var (data, expected) = TestVectorsStream["Sha512-Stream Empty String"];
@@ -451,7 +451,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-512-Stream: 448 Bits")]
+        [Test(Description = "SHA-512-Stream: 448 Bits")]
         public void Sha512Stream_448Bits()
         {
             var (data, expected) = TestVectorsStream["Sha512-Stream 448 Bits"];
@@ -460,7 +460,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-512-Stream: 896 Bits")]
+        [Test(Description = "SHA-512-Stream: 896 Bits")]
         public void Sha512Stream_896Bits()
         {
             var (data, expected) = TestVectorsStream["Sha512-Stream 896 Bits"];
@@ -469,7 +469,7 @@ namespace KybusEnigma.xUnit.Hashing.SecureHashingAlgorithm
             CustomAssert.MatchArrays(hash, expected);
         }
 
-        [Fact(DisplayName = "SHA-512-Stream: One Million times 'a'")]
+        [Test(Description = "SHA-512-Stream: One Million times 'a'")]
         public void Sha512Stream_OneMillionSmallAs()
         {
             var (data, expected) = TestVectorsStream["Sha512-Stream One Million As"];

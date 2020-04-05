@@ -1,8 +1,8 @@
-﻿using KybusEnigma.Encryption.Symmetric;
-using KybusEnigma.xUnit.Helper;
-using Xunit;
+﻿using Kybus.Enigma.Encryption.Symmetric;
+using Kybus.Enigma.Tests.Helper;
+using NUnit.Framework;
 
-namespace KybusEnigma.xUnit.Encryption
+namespace Kybus.Enigma.Tests.Encryption
 {
     public class UnitTestAes
     {
@@ -67,7 +67,7 @@ namespace KybusEnigma.xUnit.Encryption
 
         #region AES-128
 
-        [Fact(DisplayName = "AES-128 Encryption")]
+        [Test(Description = "AES-128 Encryption")]
         public void Aes128_encrypt()
         {
             var (data, expected) = TestVectors["AES-128 Encryption"];
@@ -76,7 +76,7 @@ namespace KybusEnigma.xUnit.Encryption
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
-        [Fact(DisplayName = "AES-128 Decryption")]
+        [Test(Description = "AES-128 Decryption")]
         public void Aes128_decrypt()
         {
             var (data, expected) = TestVectors["AES-128 Decryption"];
@@ -89,7 +89,7 @@ namespace KybusEnigma.xUnit.Encryption
 
         #region AES-192
 
-        [Fact(DisplayName = "AES-192 Encryption")]
+        [Test(Description = "AES-192 Encryption")]
         public void Aes192_encrypt()
         {
             var (data, expected) = TestVectors["AES-192 Encryption"];
@@ -98,7 +98,7 @@ namespace KybusEnigma.xUnit.Encryption
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
-        [Fact(DisplayName = "AES-192 Decryption")]
+        [Test(Description = "AES-192 Decryption")]
         public void Aes192_decrypt()
         {
             var (data, expected) = TestVectors["AES-192 Decryption"];
@@ -111,7 +111,7 @@ namespace KybusEnigma.xUnit.Encryption
 
         #region AES-256
 
-        [Fact(DisplayName = "AES-256 Encryption")]
+        [Test(Description = "AES-256 Encryption")]
         public void Aes256_encrypt()
         {
             var (data, expected) = TestVectors["AES-256 Encryption"];
@@ -120,7 +120,7 @@ namespace KybusEnigma.xUnit.Encryption
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
-        [Fact(DisplayName = "AES-256 Decryption")]
+        [Test(Description = "AES-256 Decryption")]
         public void Aes256_decrypt()
         {
             var (data, expected) = TestVectors["AES-256 Decryption"];
@@ -133,7 +133,7 @@ namespace KybusEnigma.xUnit.Encryption
 
         #region AES-128 (CBC)
 
-        [Fact(DisplayName = "AES-128 Encryption (CBC Mode)")]
+        [Test(Description = "AES-128 Encryption (CBC Mode)")]
         public void Aes128cbc_encrypt()
         {
             var (data, expected) = TestVectors["AES-128 Encryption (CBC Mode)"];
@@ -142,7 +142,7 @@ namespace KybusEnigma.xUnit.Encryption
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
-        [Fact(DisplayName = "AES-128 Decryption (CBC Mode)")]
+        [Test(Description = "AES-128 Decryption (CBC Mode)")]
         public void Aes128cbc_decrypt()
         {
             var (data, expected) = TestVectors["AES-128 Decryption (CBC Mode)"];
@@ -155,7 +155,7 @@ namespace KybusEnigma.xUnit.Encryption
 
         #region AES-192 (CBC)
 
-        [Fact(DisplayName = "AES-192 Encryption (CBC Mode)")]
+        [Test(Description = "AES-192 Encryption (CBC Mode)")]
         public void Aes192cbc_encrypt()
         {
             var (data, expected) = TestVectors["AES-192 Encryption (CBC Mode)"];
@@ -164,7 +164,7 @@ namespace KybusEnigma.xUnit.Encryption
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
-        [Fact(DisplayName = "AES-192 Decryption (CBC Mode)")]
+        [Test(Description = "AES-192 Decryption (CBC Mode)")]
         public void Aes192cbc_decrypt()
         {
             var (data, expected) = TestVectors["AES-192 Decryption (CBC Mode)"];
@@ -177,7 +177,7 @@ namespace KybusEnigma.xUnit.Encryption
 
         #region AES-256 (CBC)
 
-        [Fact(DisplayName = "AES-256 Encryption (CBC Mode)")]
+        [Test(Description = "AES-256 Encryption (CBC Mode)")]
         public void Aes256cbc_encrypt()
         {
             var (data, expected) = TestVectors["AES-256 Encryption (CBC Mode)"];
@@ -186,7 +186,7 @@ namespace KybusEnigma.xUnit.Encryption
             CustomAssert.MatchArrays(ciphertext, expected);
         }
 
-        [Fact(DisplayName = "AES-256 Decryption (CBC Mode)")]
+        [Test(Description = "AES-256 Decryption (CBC Mode)")]
         public void Aes256cbc_decrypt()
         {
             var (data, expected) = TestVectors["AES-256 Decryption (CBC Mode)"];

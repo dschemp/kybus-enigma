@@ -1,12 +1,15 @@
 ﻿using System.IO;
 
-namespace KybusEnigma.Hashing
+namespace Kybus.Enigma.Hashing
 {
     public abstract class Hasher
     {
         public abstract byte[] Hash(byte[] data);
+
         public abstract byte[] Hash(Stream stream);
+
         public abstract string Name { get; }
+
         /// <summary>
         /// Bit Length of Hash Result / Message Digest; -1 indicates a variable length / no fixed length.
         /// </summary>
@@ -24,7 +27,9 @@ namespace KybusEnigma.Hashing
             buffer = new byte[bufferSize];
 
             while (byteCount < buffer.Length && (currentByte = s.ReadByte()) != -1)
+            {
                 buffer[byteCount++] = (byte)currentByte;
+            }
 
             return byteCount;
         }
@@ -35,11 +40,13 @@ namespace KybusEnigma.Hashing
         protected void AppendLength(byte[] buffer, long originalLength, bool littleEndian = false)
         {
             // TODO: Use BigInteger
-            var size = originalLength * 8; // originalLength = length in bytes, i.e. we have to multiply with 8 to convert it into bits
-            var lengthBytes = littleEndian ? size.Int64ToUInt8ArrLE() : size.Int64LongToUInt8Arr();
+            long size = originalLength * 8; // originalLength = length in bytes, i.e. we have to multiply with 8 to convert it into bits
+            byte[] lengthBytes = littleEndian ? size.Int64ToUInt8ArrLE() : size.Int64LongToUInt8Arr();
 
-            for (var i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
+            {
                 buffer[buffer.Length - 8 + i] |= lengthBytes[i]; // Bits
+            }
         }
 
         #endregion

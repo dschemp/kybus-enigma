@@ -1,9 +1,9 @@
-﻿using KybusEnigma.Padding;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
+using Kybus.Enigma.Padding;
 
-namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha1
+namespace Kybus.Enigma.Hashing.SecureHashingAlgorithm.Sha1
 {
     public class Sha1 : Hasher
     {
@@ -13,9 +13,10 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha1
 
         public override byte[] Hash(byte[] data)
         {
-            var paddedInput = LengthPadding.PadToBlockSize(data, 64, 8);
+            byte[] paddedInput = LengthPadding.PadToBlockSize(data, 64, 8);
+
             // Convert input byte array to uint array for processing
-            var arr = paddedInput.UInt8ArrToUInt32Arr();
+            uint[] arr = paddedInput.UInt8ArrToUInt32Arr();
 
             // Initial values
             uint[] hash =
@@ -28,33 +29,35 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha1
             };
 
             // amount of blocks
-            var amountOfBlocks = arr.Length / 16;
+            int amountOfBlocks = arr.Length / 16;
 
-            var m = new uint[16]; // M_0 -> M_15, Message Block
-            var w = new uint[80]; // W_0 -> W_79, Message Schedule
+            uint[] m = new uint[16]; // M_0 -> M_15, Message Block
+            uint[] w = new uint[80]; // W_0 -> W_79, Message Schedule
 
             // Process each block
-            for (var n = 0; n < amountOfBlocks; n++)
+            for (int n = 0; n < amountOfBlocks; n++)
             {
                 // Copy data into current message block
                 Array.Copy(arr, n * m.Length, m, 0, m.Length);
 
                 // 1. Prepare the message schedule W:
                 Array.Copy(m, 0, w, 0, m.Length); // Copy first block into start of message schedule w
-                foreach (var t in Enumerable.Range(16, 64))
+                foreach (int t in Enumerable.Range(16, 64))
+                {
                     w[t] = (w[t - 3] ^ w[t - 8] ^ w[t - 14] ^ w[t - 16]).RotL(1);
+                }
 
                 // 2. Initialize the working variables:
-                var a = hash[0];
-                var b = hash[1];
-                var c = hash[2];
-                var d = hash[3];
-                var e = hash[4];
+                uint a = hash[0];
+                uint b = hash[1];
+                uint c = hash[2];
+                uint d = hash[3];
+                uint e = hash[4];
 
                 // 3. Perform the main hash computation:
-                foreach (var t in Enumerable.Range(0, 80))
+                foreach (int t in Enumerable.Range(0, 80))
                 {
-                    var temp = a.RotL(5) + F(t, b, c, d) + e + w[t] + K(t);
+                    uint temp = a.RotL(5) + F(t, b, c, d) + e + w[t] + K(t);
                     e = d;
                     d = c;
                     c = b.RotL(30);
@@ -76,60 +79,66 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha1
         public override byte[] Hash(Stream stream)
         {
             if (!stream.CanRead)
+            {
                 throw new IOException("Cannot read stream.");
+            }
 
             // Initial values
             uint[] hash =
             {
-                0x67452301, // H_0
-                0xEFCDAB89, // H_1
-                0x98BADCFE, // H_2
-                0x10325476, // H_3
-                0xC3D2E1F0  // H_4
+                0x67452301,
+                0xEFCDAB89,
+                0x98BADCFE,
+                0x10325476,
+                0xC3D2E1F0
             };
 
-            var w = new uint[80]; // W_0 -> W_79, Message Schedule
+            uint[] w = new uint[80]; // W_0 -> W_79, Message Schedule
 
-            var lengthAppended = false;
-            var hasBeenPadded = false; 
+            bool lengthAppended = false;
+            bool hasBeenPadded = false;
             int readByteCount;
+
             // Read and compute as long as the final length bytes have not yet been appended
             while (!lengthAppended)
             {
                 // Read in current block and pad if necessary
-                readByteCount = ReadInBlock(stream, out var buffer);
+                readByteCount = ReadInBlock(stream, out byte[] buffer);
 
-                if (readByteCount != buffer.Length && !hasBeenPadded) // Only add the 0x80 byte when it's not already been added
+                // Only add the 0x80 byte when it's not already been added
+                if (readByteCount != buffer.Length && !hasBeenPadded)
                 {
                     buffer[readByteCount] = 0x80; // Padding byte
                     hasBeenPadded = true;
                 }
-                if (readByteCount <= 48) // If there is room for the length bytes, append them ... 
-                    // (including the padding byte in the case of the padding consists of only the padding byte)
+
+                // If there is room for the length bytes, append them ...
+                // (including the padding byte in the case of the padding consists of only the padding byte)
+                if (readByteCount <= 48)
                 {
                     AppendLength(buffer, stream.Length);
                     lengthAppended = true; // ... and mark this block as the last
                 }
 
-                // --- Computation ---
-
-                var m = buffer.UInt8ArrToUInt32Arr(); // M_0 -> M_15, Current Block
+                uint[] m = buffer.UInt8ArrToUInt32Arr(); // M_0 -> M_15, Current Block
 
                 Array.Copy(m, 0, w, 0, m.Length); // Copy first block into start of message schedule w
-                foreach (var t in Enumerable.Range(16, 64))
+                foreach (int t in Enumerable.Range(16, 64))
+                {
                     w[t] = (w[t - 3] ^ w[t - 8] ^ w[t - 14] ^ w[t - 16]).RotL(1);
+                }
 
                 // 2. Initialize the working variables:
-                var a = hash[0];
-                var b = hash[1];
-                var c = hash[2];
-                var d = hash[3];
-                var e = hash[4];
+                uint a = hash[0];
+                uint b = hash[1];
+                uint c = hash[2];
+                uint d = hash[3];
+                uint e = hash[4];
 
                 // 3. Perform the main hash computation:
-                foreach (var t in Enumerable.Range(0, 80))
+                foreach (int t in Enumerable.Range(0, 80))
                 {
-                    var temp = a.RotL(5) + F(t, b, c, d) + e + w[t] + K(t);
+                    uint temp = a.RotL(5) + F(t, b, c, d) + e + w[t] + K(t);
                     e = d;
                     d = c;
                     c = b.RotL(30);
@@ -153,22 +162,40 @@ namespace KybusEnigma.Hashing.SecureHashingAlgorithm.Sha1
         protected uint F(int t, uint b, uint c, uint d)
         {
             if (t < 20)
+            {
                 return (b & c) | (~b & d);
+            }
+
             if (t < 40)
+            {
                 return b ^ c ^ d;
+            }
+
             if (t < 60)
+            {
                 return (b & c) | (b & d) | (c & d);
+            }
+
             return b ^ c ^ d;
         }
 
         protected uint K(int t)
         {
             if (t < 20)
+            {
                 return 0x5A827999;
+            }
+
             if (t < 40)
+            {
                 return 0x6ED9EBA1;
+            }
+
             if (t < 60)
+            {
                 return 0x8F1BBCDC;
+            }
+
             return 0xCA62C1D6;
         }
 

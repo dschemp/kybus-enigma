@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KybusEnigma.xUnit.Helper
+namespace Kybus.Enigma.Tests.Helper
 {
     public class TestVectorContainer<TInputData, TOutputData, TInputExpected, TOutputExpected> : List<TestVector<TInputData, TOutputData, TInputExpected, TOutputExpected>>
     {
