@@ -17,7 +17,7 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Prepare sources
-      run: sed -i 's/##TOKEN##/${{ secrets.PACKAGE_TOKEN }}/g' nuget.config
+      run: dotnet nuget setApiKey add source -n "github" -u dschemp -p ${{ secrets.PACKAGE_TOKEN }}
     - name: Install dependencies
       run: dotnet restore
     - name: Build
