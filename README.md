@@ -1,5 +1,7 @@
 ![Kybus Enigma](docs/logo.svg)
 
+![Kybus.Enigma](https://github.com/dschemp/kybus-enigma/workflows/Kybus.Enigma/badge.svg)
+
 **Kybus Enigma is a cryptographic library project started out of curiosity, fun and for educational reasons.**
 
 The project consists of several algorithms *(see table below)* and corresponding unit tests. *(Benchmarks are planned for later.)*
