@@ -1,5 +1,4 @@
-name: Build and run tests
-
+name: Kybus.Enigma
 on:
   push:
     branches: [ master ]
