@@ -5,20 +5,25 @@
     <RootNamespace>Kybus.Enigma</RootNamespace>
     <AssemblyName>Kybus.Enigma</AssemblyName>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/dschemp/kybus-enigma</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dschemp/kybus-enigma</RepositoryUrl>
     <Authors>dschemp</Authors>
     <Version>1.0.0</Version>
-    <PackageIconUrl>https://raw.githubusercontent.com/dschemp/kybus-enigma/master/docs/icon.png</PackageIconUrl>
+    <PackageIconUrl></PackageIconUrl>
     <SignAssembly>false</SignAssembly>
     <Description>Small little crypto library</Description>
     <CodeAnalysisRuleSet>..\Code_Analysis.ruleset</CodeAnalysisRuleSet>
     <Copyright />
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\docs\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
