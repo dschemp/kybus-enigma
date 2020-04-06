@@ -7,22 +7,22 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    runs-on: [ ubuntu-latest ]
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
-    - name: Prepare sources
-      run: dotnet nuget setApiKey add source -n "github" -u dschemp -p ${{ secrets.PACKAGE_TOKEN }}
-    - name: Install dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+    - name: Build library
+      run: dotnet build -c Release .\src\Kybus.Enigma.ST.csproj
+  test:
+    runs-on: [ ubuntu-latest ]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
-    - name: Push latest package to GPR
-      run: dotnet nuget push './src/Kybus.Enigma.1.0.0.nupkg' --source "github"
+      run: dotnet test --verbosity normal .\test\Tests\Kybus.Enigma.ST.Tests.csproj
