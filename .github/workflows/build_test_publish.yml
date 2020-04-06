@@ -15,7 +15,7 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Build library
-      run: dotnet build -c Release .\src\Kybus.Enigma.ST.csproj
+      run: dotnet build -c Release ./src/Kybus.Enigma.ST.csproj
   test:
     runs-on: [ ubuntu-latest ]
     steps:
@@ -25,4 +25,4 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Test
-      run: dotnet test --verbosity normal .\test\Tests\Kybus.Enigma.ST.Tests.csproj
+      run: dotnet test --verbosity normal ./test/Tests/Kybus.Enigma.ST.Tests.csproj
