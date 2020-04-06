@@ -36,6 +36,8 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.101
+      - name: Set build number
+        run: sed -i 's/1.0.0/1.0.0-${{ GITHUB_RUN_ID }}/g' ./src/Kybus.Enigma.ST.csproj'
       - name: Build library
         run: dotnet build -c Release './src/Kybus.Enigma.ST.csproj'
       - name: Pack NuGet package
