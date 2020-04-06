@@ -12,11 +12,6 @@ Ideas and (upcoming) implementations are listed in the Issues tab.
 ## Installation
 You can either build the library on your own or use the NuGet package.
 
-#### ... through NuGet:
-- Search in the NuGet Package Manager: `KybusEnigma` / [Link](https://www.nuget.org/packages/KybusEnigma)
-- Package Manager: `Install-Package KybusEnigma -Version 0.1.0`
-- dotnet CLI: `dotnet add package KybusEnigma`
-
 ## Notice
 This is a purely private hobby so I would not bet my ass on using this for anything serious without testing it extensively *(the unit test ensure that these test case work as intended but special cases can always break my implementation)*!
 Because it's a hobby there is no schedule on when I do something or not.
