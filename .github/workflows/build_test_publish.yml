@@ -1,4 +1,4 @@
-name: Kybus.Enigma
+name: Build, Test and Publish Kybus.Enigma
 on:
   push:
     paths-ignore:
