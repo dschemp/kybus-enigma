@@ -1,8 +1,8 @@
 name: Kybus.Enigma
 on:
   push:
-    branches: [ master ]
-  pull_request:
+    paths-ignore:
+      - 'docs/**'
     branches: [ master ]
 
 jobs:
