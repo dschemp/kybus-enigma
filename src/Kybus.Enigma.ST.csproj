@@ -14,7 +14,7 @@
     <PackageIconUrl></PackageIconUrl>
     <SignAssembly>false</SignAssembly>
     <Description>Small little crypto library</Description>
-    <CodeAnalysisRuleSet>..\Code_Analysis.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\env\Code_Analysis.ruleset</CodeAnalysisRuleSet>
     <Copyright />
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
