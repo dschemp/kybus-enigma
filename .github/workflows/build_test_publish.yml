@@ -27,25 +27,25 @@ jobs:
         dotnet-version: 3.1.101
     - name: Test
       run: dotnet test --verbosity normal './test/Tests/Kybus.Enigma.ST.Tests.csproj'
-  publish:
-    runs-on: [ ubuntu-latest ]
-    needs: [ build, test ]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 3.1.101
-      - name: Set build number
-        run: sed -i 's/1.0.0/1.0.0-${{ github.run_id }}/g' './src/Kybus.Enigma.ST.csproj'
-      - name: Build library
-        run: dotnet build -c Release './src/Kybus.Enigma.ST.csproj'
-      - name: Pack NuGet package
-        run: dotnet pack -c Release -o './nuget_build/' './src/Kybus.Enigma.ST.csproj'
-      - name: Publish to GPR
-        uses: tanaka-takayoshi/nuget-publish-to-github-packages-action@v2.1
-        with:
-          nupkg-path: './nuget_build/*.nupkg'
-          repo-owner: 'schempion'
-          gh-user: 'dschemp'
-          token: ${{ secrets.PACKAGE_TOKEN }}
+  #publish:
+  #  runs-on: [ ubuntu-latest ]
+  #  needs: [ build, test ]
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - name: Setup .NET Core
+  #      uses: actions/setup-dotnet@v1
+  #      with:
+  #        dotnet-version: 3.1.101
+  #    - name: Set build number
+  #      run: sed -i 's/1.0.0/1.0.0-${{ github.run_id }}/g' './src/Kybus.Enigma.ST.csproj'
+  #    - name: Build library
+  #      run: dotnet build -c Release './src/Kybus.Enigma.ST.csproj'
+  #    - name: Pack NuGet package
+  #      run: dotnet pack -c Release -o './nuget_build/' './src/Kybus.Enigma.ST.csproj'
+  #    - name: Publish to GPR
+  #      uses: tanaka-takayoshi/nuget-publish-to-github-packages-action@v2.1
+  #      with:
+  #        nupkg-path: './nuget_build/*.nupkg'
+  #        repo-owner: 'schempion'
+  #        gh-user: 'dschemp'
+  #        token: ${{ secrets.PACKAGE_TOKEN }}
