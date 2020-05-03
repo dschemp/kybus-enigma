@@ -1,3 +1,3 @@
 [submodule "env"]
 	path = env
-	url = https://github.com/dschemp/csharp-env.git
+	url = https://github.com/schempion/csharp-dev-env
