@@ -46,6 +46,6 @@ jobs:
         uses: tanaka-takayoshi/nuget-publish-to-github-packages-action@v2.1
         with:
           nupkg-path: './nuget_build/*.nupkg'
-          repo-owner: 'dschemp'
+          repo-owner: 'schempion'
           gh-user: 'dschemp'
           token: ${{ secrets.PACKAGE_TOKEN }}
